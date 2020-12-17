@@ -1,6 +1,6 @@
 {
   "name": "tigerbay",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "API Client library for TigerBay",
   "main": "lib/client.js",
 
