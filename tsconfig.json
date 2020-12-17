@@ -3,10 +3,15 @@
         "target": "ES6",
         "module": "ES6",
         "rootDir": "src/",
-        "outDir": "build/",
+        "outDir": "lib/",
         "esModuleInterop": true,
         "moduleResolution": "node",
-        "strict": true
+        "resolveJsonModule": true,
+        "strict": true,
+        "types": [
+            "node"
+        ],
+        "declaration": true,
     },
 
     "include": ["src/**/*.ts"],

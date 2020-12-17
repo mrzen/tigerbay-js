@@ -2,8 +2,13 @@
   "name": "tigerbay",
   "version": "0.1.0",
   "description": "API Client library for TigerBay",
-  "main": "index.js",
-  "repository": "https://github.com/mrzen/tigerbay-js",
+  "main": "lib/client.js",
+
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mrzen/tigerbay-js"
+  },
+
   "author": "Leo Adamek <leo.adamek@mrzen.com>",
   "license": "MIT",
   "private": false,
@@ -25,5 +30,9 @@
   "dependencies": {
     "axios": "^0.21.0",
     "qs": "^6.9.4"
+  },
+
+  "scripts": {
+    "build": "tsc -p ."
   }
 }
