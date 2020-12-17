@@ -1,10 +1,8 @@
-import { Reservations } from './models'
-import Axios, { AxiosInstance, AxiosRequestConfig } from 'axios'
+import { Notes, Reservations, Tasks, Tours } from './models'
+import Axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
 import { USER_AGENT } from './user_agent'
 import * as Auth from './auth'
-import { Reservation } from './models/reservations'
-
-
+export * from './models'
 export * as Auth from './auth'
 
 /**
@@ -12,9 +10,15 @@ export * as Auth from './auth'
  */
 export class Client {
 
+    /**
+     * Client configuration parameters
+     */
     private config: ClientConfig
 
-    public axios: AxiosInstance
+    /**
+     * Underlying Axios HTTP client. 
+     */
+    protected axios: AxiosInstance
 
     constructor(config: ClientConfig) {
         this.config = config
@@ -36,20 +40,68 @@ export class Client {
     }
 
     /**
-     * Create a new Reservation
-     * 
-     * @param params Reservation Parameters
-     * 
+     * Access Reservation-related API actions
      */
-    public async createReservation(params: Reservations.CreateReservationRequest): Promise<Reservations.Reservation> {
-        const rsp = await this.axios.post<Reservations.Reservation>("/sales/reservations/", params)
-        return rsp.data
+    public get reservations(): Reservations.Api {
+        return new Reservations.Api(this.axios)
     }
 
-    public async getReservation(id: string): Promise<Reservations.Reservation> {
-        const rsp = await this.axios.get<Reservations.Reservation>(`/sales/reservations/${id}`)
-        return rsp.data
+    /**
+     * Access Task-related API actions
+     */
+    public get tasks(): Tasks.Api {
+        return new Tasks.Api(this.axios)
     }
+
+    /**
+     * Access Tour-releated API actions
+     */
+    public get tours(): Tours.Api {
+        return new Tours.Api(this.axios);
+    }
+
+    /**
+     * Access Note-related API actions
+     */
+    public get notes(): Notes.Api {
+        return new Notes.Api(this.axios)
+    }
+
+    /**
+     * Add a new interceptor before a request is sent
+     * 
+     * @param func Function for request fufillment
+     * @returns Handle for interceptor, used with {@link ejectOnRequest}
+     */
+    public onRequest(func: (value: AxiosRequestConfig) => AxiosRequestConfig | Promise<AxiosRequestConfig>): number {
+        return this.axios.interceptors.request.use(func)
+    }
+
+    /**
+     * Add a new intercepter for responses
+     * 
+     * @param onFulfilled Callback when a response is received
+     * @param onRejected Callback for when a response fails
+     * 
+     * @returns Handle for interceptor, used with {@link ejectOnResponse}
+     */
+    public onResponse(onFulfilled?: (value: AxiosResponse) => AxiosResponse | Promise<AxiosResponse>, onRejected?: (error: any) => any): number {
+        return this.axios.interceptors.response.use(onFulfilled, onRejected)
+    }
+
+    public ejectOnResponse(handle: number): void {
+        this.axios.interceptors.response.eject(handle)
+    }
+
+    /**
+     * Eject in interceptor from the request
+     * 
+     * @param id Handle of the interceptor to remove
+     */
+    public ejectOnRequest(id: number): void {
+        this.axios.interceptors.request.eject(id)
+    }
+
 }
 
 /**

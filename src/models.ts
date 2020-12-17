@@ -1,1 +1,5 @@
 export * as Reservations from './models/reservations'
+export * as Common from './models/common'
+export * as Tours from './models/tours'
+export * as Tasks from './models/tasks'
+export * as Notes from './models/notes'

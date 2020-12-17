@@ -10,5 +10,7 @@
     },
 
     "include": ["src/**/*.ts"],
-    "exclude": ["node_modules", "**/*.spec.ts", "examples/**/*.ts"]
+    "exclude": ["node_modules", "**/*.spec.ts", "examples/**/*.ts"],
+
+    "ts-node": {}
 }

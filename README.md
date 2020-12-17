@@ -22,9 +22,8 @@ const client = new TigerBay.Client({
     credentials: credentials
 });
 
-
 // Get a booking
-client.getReservation('booking_ref').then(booking => {
+client.Reservations.find('booking_ref').then(booking => {
     console.log(`Booking Get`);
 }).catch(error => {
     console.error(`Unable to get booking: ${error.message}`)

@@ -31,7 +31,7 @@ export function Authentication(baseUrl: string, provider: CredentialsProvider) {
     return async function(req: AxiosRequestConfig): Promise<AxiosRequestConfig> {
 
         if (token && tokenExpires && tokenExpires > new Date() ) {
-            req.headers.Authorization = `beaer ${token}`
+            req.headers.Authorization = `bearer ${token}`
 
             return req
         }
