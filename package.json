@@ -1,6 +1,6 @@
 {
   "name": "tigerbay",
-  "version": "0.1.1-alpha.2",
+  "version": "0.2.1",
   "description": "API Client library for TigerBay",
   "main": "lib/client.js",
   "repository": {
@@ -9,7 +9,6 @@
   },
   "author": "Leo Adamek <leo.adamek@mrzen.com>",
   "license": "MIT",
-  "type": "module",
   "keywords": [
     "tigerbay",
     "travel-and-tourism",
