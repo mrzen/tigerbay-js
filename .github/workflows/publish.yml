@@ -1,5 +1,9 @@
 name: Publish NPM package
 
+on:
+  push:
+    branches: [master]
+
 jobs:
   publish:
     name: npm-publish
