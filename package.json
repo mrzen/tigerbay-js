@@ -1,6 +1,6 @@
 {
   "name": "tigerbay",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "API Client library for TigerBay",
   "main": "lib/client.js",
   "type": "commonjs",
@@ -8,6 +8,9 @@
     "type": "git",
     "url": "https://github.com/mrzen/tigerbay-js"
   },
+  "files": [
+    "lib/**/*"
+  ],
   "author": "Leo Adamek <leo.adamek@mrzen.com>",
   "license": "MIT",
   "keywords": [
