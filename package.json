@@ -1,8 +1,9 @@
 {
   "name": "tigerbay",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "API Client library for TigerBay",
   "main": "lib/client.js",
+  "type": "commonjs",
   "repository": {
     "type": "git",
     "url": "https://github.com/mrzen/tigerbay-js"
