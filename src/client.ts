@@ -1,9 +1,9 @@
-import { Notes, Reservations, Tasks, Tours } from './models'
+import { Notes, Reservations, Tasks, Tours } from './models.js'
 import Axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
-import { USER_AGENT } from './user_agent'
-import * as Auth from './auth'
-export * from './models'
-export * as Auth from './auth'
+import { USER_AGENT } from './user_agent.js'
+import * as Auth from './auth.js'
+export * as Auth from './auth.js'
+export * as Models from './models.js'
 
 /**
  * Base Client for TigerBay reservation system
