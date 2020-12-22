@@ -104,6 +104,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_models_reservations_.api.html#addcomponent" class="tsd-kind-icon">add<wbr>Component</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_models_reservations_.api.html#addpassenger" class="tsd-kind-icon">add<wbr>Passenger</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_models_reservations_.api.html#assign" class="tsd-kind-icon">assign</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_models_reservations_.api.html#confirm" class="tsd-kind-icon">confirm</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_models_reservations_.api.html#create" class="tsd-kind-icon">create</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_models_reservations_.api.html#find" class="tsd-kind-icon">find</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_models_reservations_.api.html#tasks" class="tsd-kind-icon">tasks</a></li>
@@ -126,7 +127,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_models_common_.apigroup.html">APIGroup</a>.<a href="_models_common_.apigroup.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mrzen/tigerbay-js/blob/a1a961c/src/models/common.ts#L44">models/common.ts:44</a></li>
+									<li>Defined in <a href="https://github.com/mrzen/tigerbay-js/blob/bf81c92/src/models/common.ts#L44">models/common.ts:44</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -149,7 +150,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_models_common_.apigroup.html">APIGroup</a>.<a href="_models_common_.apigroup.html#axios">axios</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/mrzen/tigerbay-js/blob/a1a961c/src/models/common.ts#L44">models/common.ts:44</a></li>
+							<li>Defined in <a href="https://github.com/mrzen/tigerbay-js/blob/bf81c92/src/models/common.ts#L44">models/common.ts:44</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -166,7 +167,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mrzen/tigerbay-js/blob/a1a961c/src/models/reservations.ts#L305">models/reservations.ts:305</a></li>
+									<li>Defined in <a href="https://github.com/mrzen/tigerbay-js/blob/bf81c92/src/models/reservations.ts#L305">models/reservations.ts:305</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -198,7 +199,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mrzen/tigerbay-js/blob/a1a961c/src/models/reservations.ts#L295">models/reservations.ts:295</a></li>
+									<li>Defined in <a href="https://github.com/mrzen/tigerbay-js/blob/bf81c92/src/models/reservations.ts#L295">models/reservations.ts:295</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -235,7 +236,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mrzen/tigerbay-js/blob/a1a961c/src/models/reservations.ts#L300">models/reservations.ts:300</a></li>
+									<li>Defined in <a href="https://github.com/mrzen/tigerbay-js/blob/bf81c92/src/models/reservations.ts#L300">models/reservations.ts:300</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -255,6 +256,37 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="confirm" class="tsd-anchor"></a>
+					<h3>confirm</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">confirm<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/mrzen/tigerbay-js/blob/bf81c92/src/models/reservations.ts#L350">models/reservations.ts:350</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Confirm a reservation</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>id: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>ID of the reservation to confirm</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="create" class="tsd-anchor"></a>
 					<h3>create</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -264,7 +296,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mrzen/tigerbay-js/blob/a1a961c/src/models/reservations.ts#L274">models/reservations.ts:274</a></li>
+									<li>Defined in <a href="https://github.com/mrzen/tigerbay-js/blob/bf81c92/src/models/reservations.ts#L274">models/reservations.ts:274</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -287,7 +319,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mrzen/tigerbay-js/blob/a1a961c/src/models/reservations.ts#L284">models/reservations.ts:284</a></li>
+									<li>Defined in <a href="https://github.com/mrzen/tigerbay-js/blob/bf81c92/src/models/reservations.ts#L284">models/reservations.ts:284</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -318,7 +350,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mrzen/tigerbay-js/blob/a1a961c/src/models/reservations.ts#L341">models/reservations.ts:341</a></li>
+									<li>Defined in <a href="https://github.com/mrzen/tigerbay-js/blob/bf81c92/src/models/reservations.ts#L341">models/reservations.ts:341</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -349,7 +381,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mrzen/tigerbay-js/blob/a1a961c/src/models/reservations.ts#L331">models/reservations.ts:331</a></li>
+									<li>Defined in <a href="https://github.com/mrzen/tigerbay-js/blob/bf81c92/src/models/reservations.ts#L331">models/reservations.ts:331</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -407,6 +439,9 @@
 					<li class=" tsd-kind-module">
 						<a href="../modules/_models_notes_.html">&quot;models/notes&quot;</a>
 					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_models_payments_.html">&quot;models/payments&quot;</a>
+					</li>
 					<li class="current tsd-kind-module">
 						<a href="../modules/_models_reservations_.html">&quot;models/reservations&quot;</a>
 					</li>
@@ -442,6 +477,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_models_reservations_.api.html#assign" class="tsd-kind-icon">assign</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_models_reservations_.api.html#confirm" class="tsd-kind-icon">confirm</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_models_reservations_.api.html#create" class="tsd-kind-icon">create</a>

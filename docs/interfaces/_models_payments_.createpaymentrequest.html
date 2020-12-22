@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Inventory | tigerbay</title>
+	<title>CreatePaymentRequest | tigerbay</title>
 	<meta name="description" content="Documentation for tigerbay">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,24 +56,31 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_models_tours_.html">&quot;models/tours&quot;</a>
+					<a href="../modules/_models_payments_.html">&quot;models/payments&quot;</a>
 				</li>
 				<li>
-					<a href="_models_tours_.inventory.html">Inventory</a>
+					<a href="_models_payments_.createpaymentrequest.html">CreatePaymentRequest</a>
 				</li>
 			</ul>
-			<h1>Interface Inventory</h1>
+			<h1>Interface CreatePaymentRequest</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Parameters to create a new payment</p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Inventory</span>
+						<span class="target">CreatePaymentRequest</span>
 					</li>
 				</ul>
 			</section>
@@ -84,10 +91,11 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_models_tours_.inventory.html#available" class="tsd-kind-icon">Available</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_models_tours_.inventory.html#isclosed" class="tsd-kind-icon">Is<wbr>Closed</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_models_tours_.inventory.html#isfreesell" class="tsd-kind-icon">Is<wbr>Free<wbr>Sell</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_models_tours_.inventory.html#isonrequest" class="tsd-kind-icon">Is<wbr>OnRequest</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_models_payments_.createpaymentrequest.html#amount" class="tsd-kind-icon">Amount</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_models_payments_.createpaymentrequest.html#contactidforpayment" class="tsd-kind-icon">Contact<wbr>IdFor<wbr>Payment</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_models_payments_.createpaymentrequest.html#reference" class="tsd-kind-icon">Reference</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_models_payments_.createpaymentrequest.html#returnurl" class="tsd-kind-icon">Return<wbr>Url</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_models_payments_.createpaymentrequest.html#setuppaymenttypeid" class="tsd-kind-icon">Setup<wbr>Payment<wbr>Type<wbr>Id</a></li>
 							</ul>
 						</section>
 					</div>
@@ -96,44 +104,74 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="available" class="tsd-anchor"></a>
-					<h3>Available</h3>
-					<div class="tsd-signature tsd-kind-icon">Available<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<a name="amount" class="tsd-anchor"></a>
+					<h3>Amount</h3>
+					<div class="tsd-signature tsd-kind-icon">Amount<span class="tsd-signature-symbol">:</span> <a href="_models_payments_.paymentamount.html" class="tsd-signature-type">PaymentAmount</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mrzen/tigerbay-js/blob/bf81c92/src/models/tours.ts#L197">models/tours.ts:197</a></li>
+							<li>Defined in models/payments.ts:9</li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="isclosed" class="tsd-anchor"></a>
-					<h3>Is<wbr>Closed</h3>
-					<div class="tsd-signature tsd-kind-icon">Is<wbr>Closed<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<a name="contactidforpayment" class="tsd-anchor"></a>
+					<h3>Contact<wbr>IdFor<wbr>Payment</h3>
+					<div class="tsd-signature tsd-kind-icon">Contact<wbr>IdFor<wbr>Payment<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mrzen/tigerbay-js/blob/bf81c92/src/models/tours.ts#L200">models/tours.ts:200</a></li>
+							<li>Defined in models/payments.ts:24</li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>ID of the customer contact to associate the payment with</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="isfreesell" class="tsd-anchor"></a>
-					<h3>Is<wbr>Free<wbr>Sell</h3>
-					<div class="tsd-signature tsd-kind-icon">Is<wbr>Free<wbr>Sell<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<a name="reference" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> Reference</h3>
+					<div class="tsd-signature tsd-kind-icon">Reference<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mrzen/tigerbay-js/blob/bf81c92/src/models/tours.ts#L199">models/tours.ts:199</a></li>
+							<li>Defined in models/payments.ts:14</li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>An optional payment reference</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="isonrequest" class="tsd-anchor"></a>
-					<h3>Is<wbr>OnRequest</h3>
-					<div class="tsd-signature tsd-kind-icon">Is<wbr>OnRequest<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<a name="returnurl" class="tsd-anchor"></a>
+					<h3>Return<wbr>Url</h3>
+					<div class="tsd-signature tsd-kind-icon">Return<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">URL</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mrzen/tigerbay-js/blob/bf81c92/src/models/tours.ts#L198">models/tours.ts:198</a></li>
+							<li>Defined in models/payments.ts:19</li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>URL to return the user to after making the payment</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="setuppaymenttypeid" class="tsd-anchor"></a>
+					<h3>Setup<wbr>Payment<wbr>Type<wbr>Id</h3>
+					<div class="tsd-signature tsd-kind-icon">Setup<wbr>Payment<wbr>Type<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in models/payments.ts:29</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Payment Type ID</p>
+						</div>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -161,7 +199,7 @@
 					<li class=" tsd-kind-module">
 						<a href="../modules/_models_notes_.html">&quot;models/notes&quot;</a>
 					</li>
-					<li class=" tsd-kind-module">
+					<li class="current tsd-kind-module">
 						<a href="../modules/_models_payments_.html">&quot;models/payments&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
@@ -170,7 +208,7 @@
 					<li class=" tsd-kind-module">
 						<a href="../modules/_models_tasks_.html">&quot;models/tasks&quot;</a>
 					</li>
-					<li class="current tsd-kind-module">
+					<li class=" tsd-kind-module">
 						<a href="../modules/_models_tours_.html">&quot;models/tours&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
@@ -181,76 +219,40 @@
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-class tsd-parent-kind-module">
-						<a href="../classes/_models_tours_.api.html" class="tsd-kind-icon">Api</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="_models_tours_.accommodation.html" class="tsd-kind-icon">Accommodation</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="_models_tours_.accommodationunit.html" class="tsd-kind-icon">Accommodation<wbr>Unit</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="_models_tours_.departure.html" class="tsd-kind-icon">Departure</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="_models_tours_.departureduration.html" class="tsd-kind-icon">Departure<wbr>Duration</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="_models_tours_.departurepricing.html" class="tsd-kind-icon">Departure<wbr>Pricing</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="_models_tours_.flight.html" class="tsd-kind-icon">Flight</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="_models_tours_.flightcarrier.html" class="tsd-kind-icon">Flight<wbr>Carrier</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="_models_tours_.flightleg.html" class="tsd-kind-icon">Flight<wbr>Leg</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="_models_tours_.flightpricing.html" class="tsd-kind-icon">Flight<wbr>Pricing</a>
+						<a href="../classes/_models_payments_.api.html" class="tsd-kind-icon">Api</a>
 					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-module">
-						<a href="_models_tours_.inventory.html" class="tsd-kind-icon">Inventory</a>
+						<a href="_models_payments_.createpaymentrequest.html" class="tsd-kind-icon">Create<wbr>Payment<wbr>Request</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_models_tours_.inventory.html#available" class="tsd-kind-icon">Available</a>
+								<a href="_models_payments_.createpaymentrequest.html#amount" class="tsd-kind-icon">Amount</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_models_tours_.inventory.html#isclosed" class="tsd-kind-icon">Is<wbr>Closed</a>
+								<a href="_models_payments_.createpaymentrequest.html#contactidforpayment" class="tsd-kind-icon">Contact<wbr>IdFor<wbr>Payment</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_models_tours_.inventory.html#isfreesell" class="tsd-kind-icon">Is<wbr>Free<wbr>Sell</a>
+								<a href="_models_payments_.createpaymentrequest.html#reference" class="tsd-kind-icon">Reference</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_models_tours_.inventory.html#isonrequest" class="tsd-kind-icon">Is<wbr>OnRequest</a>
+								<a href="_models_payments_.createpaymentrequest.html#returnurl" class="tsd-kind-icon">Return<wbr>Url</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_models_payments_.createpaymentrequest.html#setuppaymenttypeid" class="tsd-kind-icon">Setup<wbr>Payment<wbr>Type<wbr>Id</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="_models_tours_.occupancy.html" class="tsd-kind-icon">Occupancy</a>
+						<a href="_models_payments_.createpaymentresponse.html" class="tsd-kind-icon">Create<wbr>Payment<wbr>Response</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="_models_tours_.overriderules.html" class="tsd-kind-icon">Override<wbr>Rules</a>
+						<a href="_models_payments_.payment.html" class="tsd-kind-icon">Payment</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="_models_tours_.tour.html" class="tsd-kind-icon">Tour</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="_models_tours_.toursearchrequest.html" class="tsd-kind-icon">Tour<wbr>Search<wbr>Request</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="_models_tours_.toursearchresponse.html" class="tsd-kind-icon">Tour<wbr>Search<wbr>Response</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
-						<a href="../modules/_models_tours_.html#overrideruletype" class="tsd-kind-icon">Override<wbr>Rule<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
-						<a href="../modules/_models_tours_.html#transportmode" class="tsd-kind-icon">Transport<wbr>Mode</a>
+						<a href="_models_payments_.paymentamount.html" class="tsd-kind-icon">Payment<wbr>Amount</a>
 					</li>
 				</ul>
 			</nav>

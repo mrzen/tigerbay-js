@@ -56,10 +56,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_models_customers_.html">&quot;models/customers&quot;</a>
+					<a href="../modules/_models_payments_.html">&quot;models/payments&quot;</a>
 				</li>
 				<li>
-					<a href="_models_customers_.api.html">Api</a>
+					<a href="_models_payments_.api.html">Api</a>
 				</li>
 			</ul>
 			<h1>Class Api</h1>
@@ -69,6 +69,13 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>API Operations for Payments</p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -89,21 +96,21 @@
 						<section class="tsd-index-section tsd-is-inherited">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><a href="_models_customers_.api.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><a href="_models_payments_.api.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-inherited tsd-is-private-protected">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="_models_customers_.api.html#axios" class="tsd-kind-icon">axios</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="_models_payments_.api.html#axios" class="tsd-kind-icon">axios</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_models_customers_.api.html#create" class="tsd-kind-icon">create</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_models_customers_.api.html#createcontact" class="tsd-kind-icon">create<wbr>Contact</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_models_customers_.api.html#search" class="tsd-kind-icon">search</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_models_payments_.api.html#create" class="tsd-kind-icon">create</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_models_payments_.api.html#finalize" class="tsd-kind-icon">finalize</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_models_payments_.api.html#find" class="tsd-kind-icon">find</a></li>
 							</ul>
 						</section>
 					</div>
@@ -115,7 +122,7 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Api<span class="tsd-signature-symbol">(</span>axios<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AxiosInstance</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_models_customers_.api.html" class="tsd-signature-type">Api</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Api<span class="tsd-signature-symbol">(</span>axios<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AxiosInstance</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_models_payments_.api.html" class="tsd-signature-type">Api</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -131,7 +138,7 @@
 									<h5>axios: <span class="tsd-signature-type">AxiosInstance</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="_models_customers_.api.html" class="tsd-signature-type">Api</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_models_payments_.api.html" class="tsd-signature-type">Api</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -156,87 +163,99 @@
 					<a name="create" class="tsd-anchor"></a>
 					<h3>create</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">create<span class="tsd-signature-symbol">(</span>params<span class="tsd-signature-symbol">: </span><a href="../interfaces/_models_customers_.createcustomerrequest.html" class="tsd-signature-type">CreateCustomerRequest</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_models_customers_.customer.html" class="tsd-signature-type">Customer</a><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">create<span class="tsd-signature-symbol">(</span>reservationId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, payment<span class="tsd-signature-symbol">: </span><a href="../interfaces/_models_payments_.createpaymentrequest.html" class="tsd-signature-type">CreatePaymentRequest</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_models_payments_.createpaymentresponse.html" class="tsd-signature-type">CreatePaymentResponse</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mrzen/tigerbay-js/blob/bf81c92/src/models/customers.ts#L81">models/customers.ts:81</a></li>
+									<li>Defined in models/payments.ts:74</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Create a new customer</p>
+									<p>Request a new payment against a reservation</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>params: <a href="../interfaces/_models_customers_.createcustomerrequest.html" class="tsd-signature-type">CreateCustomerRequest</a></h5>
+									<h5>reservationId: <span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>Customer information</p>
+										<p>ID of the reservation to add the payment to</p>
+									</div>
+								</li>
+								<li>
+									<h5>payment: <a href="../interfaces/_models_payments_.createpaymentrequest.html" class="tsd-signature-type">CreatePaymentRequest</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Paramters for the payment</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_models_customers_.customer.html" class="tsd-signature-type">Customer</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_models_payments_.createpaymentresponse.html" class="tsd-signature-type">CreatePaymentResponse</a><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="createcontact" class="tsd-anchor"></a>
-					<h3>create<wbr>Contact</h3>
+					<a name="finalize" class="tsd-anchor"></a>
+					<h3>finalize</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">create<wbr>Contact<span class="tsd-signature-symbol">(</span>customerId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, contact<span class="tsd-signature-symbol">: </span><a href="../interfaces/_models_customers_.customercontact.html" class="tsd-signature-type">CustomerContact</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_models_customers_.customer.html" class="tsd-signature-type">Customer</a><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">finalize<span class="tsd-signature-symbol">(</span>reservationId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, paymentId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_models_payments_.payment.html" class="tsd-signature-type">Payment</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mrzen/tigerbay-js/blob/bf81c92/src/models/customers.ts#L85">models/customers.ts:85</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>customerId: <span class="tsd-signature-type">number</span></h5>
-								</li>
-								<li>
-									<h5>contact: <a href="../interfaces/_models_customers_.customercontact.html" class="tsd-signature-type">CustomerContact</a></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_models_customers_.customer.html" class="tsd-signature-type">Customer</a><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="search" class="tsd-anchor"></a>
-					<h3>search</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">search<span class="tsd-signature-symbol">(</span>params<span class="tsd-signature-symbol">: </span><a href="../interfaces/_models_customers_.customersearchrequest.html" class="tsd-signature-type">CustomerSearchRequest</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_models_customers_.customer.html" class="tsd-signature-type">Customer</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/mrzen/tigerbay-js/blob/bf81c92/src/models/customers.ts#L69">models/customers.ts:69</a></li>
+									<li>Defined in models/payments.ts:88</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Search existing customers</p>
+									<p>Finalize an existing payment.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>params: <a href="../interfaces/_models_customers_.customersearchrequest.html" class="tsd-signature-type">CustomerSearchRequest</a></h5>
+									<h5>reservationId: <span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>Search query parameters</p>
+										<p>ID of the reservation the payment is against</p>
+									</div>
+								</li>
+								<li>
+									<h5>paymentId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>ID of the payment to finalize</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_models_customers_.customer.html" class="tsd-signature-type">Customer</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_models_payments_.payment.html" class="tsd-signature-type">Payment</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="find" class="tsd-anchor"></a>
+					<h3>find</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">find<span class="tsd-signature-symbol">(</span>reservationId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_models_payments_.payment.html" class="tsd-signature-type">Payment</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in models/payments.ts:78</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>reservationId: <span class="tsd-signature-type">number</span></h5>
+								</li>
+								<li>
+									<h5>id: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_models_payments_.payment.html" class="tsd-signature-type">Payment</a><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -260,13 +279,13 @@
 					<li class=" tsd-kind-module">
 						<a href="../modules/_models_common_.html">&quot;models/common&quot;</a>
 					</li>
-					<li class="current tsd-kind-module">
+					<li class=" tsd-kind-module">
 						<a href="../modules/_models_customers_.html">&quot;models/customers&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="../modules/_models_notes_.html">&quot;models/notes&quot;</a>
 					</li>
-					<li class=" tsd-kind-module">
+					<li class="current tsd-kind-module">
 						<a href="../modules/_models_payments_.html">&quot;models/payments&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
@@ -288,44 +307,38 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-module">
-						<a href="_models_customers_.api.html" class="tsd-kind-icon">Api</a>
+						<a href="_models_payments_.api.html" class="tsd-kind-icon">Api</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited">
-								<a href="_models_customers_.api.html#constructor" class="tsd-kind-icon">constructor</a>
+								<a href="_models_payments_.api.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
-								<a href="_models_customers_.api.html#axios" class="tsd-kind-icon">axios</a>
+								<a href="_models_payments_.api.html#axios" class="tsd-kind-icon">axios</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_models_customers_.api.html#create" class="tsd-kind-icon">create</a>
+								<a href="_models_payments_.api.html#create" class="tsd-kind-icon">create</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_models_customers_.api.html#createcontact" class="tsd-kind-icon">create<wbr>Contact</a>
+								<a href="_models_payments_.api.html#finalize" class="tsd-kind-icon">finalize</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_models_customers_.api.html#search" class="tsd-kind-icon">search</a>
+								<a href="_models_payments_.api.html#find" class="tsd-kind-icon">find</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="../interfaces/_models_customers_.createcustomerrequest.html" class="tsd-kind-icon">Create<wbr>Customer<wbr>Request</a>
+						<a href="../interfaces/_models_payments_.createpaymentrequest.html" class="tsd-kind-icon">Create<wbr>Payment<wbr>Request</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="../interfaces/_models_customers_.customer.html" class="tsd-kind-icon">Customer</a>
+						<a href="../interfaces/_models_payments_.createpaymentresponse.html" class="tsd-kind-icon">Create<wbr>Payment<wbr>Response</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="../interfaces/_models_customers_.customercontact.html" class="tsd-kind-icon">Customer<wbr>Contact</a>
+						<a href="../interfaces/_models_payments_.payment.html" class="tsd-kind-icon">Payment</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="../interfaces/_models_customers_.customersearchrequest.html" class="tsd-kind-icon">Customer<wbr>Search<wbr>Request</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
-						<a href="../modules/_models_customers_.html#contacttype" class="tsd-kind-icon">Contact<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
-						<a href="../modules/_models_customers_.html#gender" class="tsd-kind-icon">Gender</a>
+						<a href="../interfaces/_models_payments_.paymentamount.html" class="tsd-kind-icon">Payment<wbr>Amount</a>
 					</li>
 				</ul>
 			</nav>
