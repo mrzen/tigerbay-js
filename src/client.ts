@@ -1,4 +1,4 @@
-import { Customers, Notes, Reservations, Tasks, Tours } from './models'
+import { Customers, Notes, Payments, Reservations, Tasks, Tours } from './models'
 import Axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
 import { USER_AGENT } from './user_agent'
 import * as Auth from './auth'
@@ -72,6 +72,13 @@ export class Client {
      */
     public get customers(): Customers.Api {
         return new Customers.Api(this.axios)
+    }
+
+    /**
+     * Access payment related API actions
+     */
+    public get payments(): Payments.Api {
+        return new Payments.Api(this.axios)
     }
 
     /**

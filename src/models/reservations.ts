@@ -341,4 +341,14 @@ export class Api extends APIGroup {
     public async tasks(id: string): Promise<Array<Tasks.Task>> {
         return (await this.axios.get<Array<Tasks.Task>>(`/sales/reservations/${id}/tasks`)).data
     }
+
+    /**
+     * Confirm a reservation
+     * 
+     * @param id ID of the reservation to confirm
+     */
+    public async confirm(id: string): Promise<void> {
+        const params = {ReservationId: id}
+        await this.axios.post(`/sales/reservations/confirmations`, params)
+    }
 }
