@@ -1,5 +1,4 @@
-import { RSA_PKCS1_OAEP_PADDING } from "constants";
-import { APIGroup, DateRange, Link, Warning } from "./common";
+import { APIGroup, DateRange, LinkedObject, Warning } from "./common";
 import { Price } from "./reservations";
 
 
@@ -48,7 +47,7 @@ export class Api extends APIGroup {
     }
 }
 
-export interface AccommodationUnit {
+export interface AccommodationUnit extends LinkedObject {
     readonly Id: string
     SetupId: number
     Name: string
@@ -71,15 +70,13 @@ export interface AccommodationUnit {
     Accommodation: Accommodation
     IsMandatory: boolean
     IsDefault: boolean
-    Links: Array<Link>
 }
 
-export interface Accommodation {
+export interface Accommodation extends LinkedObject {
     SetupId: number
     Reference: string
     Name: string
     Type: string
-    Links: Array<Link>
 }
 
 export interface Occupancy {
@@ -87,7 +84,7 @@ export interface Occupancy {
     To: number
 }
 
-export interface Departure {
+export interface Departure extends LinkedObject {
     readonly Id: string
     SetupId: number
     Name: string
@@ -95,7 +92,6 @@ export interface Departure {
     Duration: DepartureDuration
     Pricing: DeparturePricing
     Warnings: Array<Warning>
-    Links: Array<Link>
     Tour: Tour
     StartLocationId: number
     EndLocationId: number
@@ -103,9 +99,8 @@ export interface Departure {
     AllocationOnRequest: boolean
 }
 
-export interface Tour {
+export interface Tour extends LinkedObject {
     SetupId: number
-    Links: Array<Link>
 }
 
 export interface DeparturePricing {
@@ -131,7 +126,7 @@ export interface TourSearchRequest {
     /**
      * SKU/Reference of the tour to search for
      */
-    TourReference: string
+    TourReference?: string
 
     /**
      * Range of dates to search for departures in
@@ -149,7 +144,7 @@ export interface TourSearchRequest {
     SalesChannel: string
 }
 
-export interface TourSearchResponse {
+export interface TourSearchResponse extends LinkedObject {
     /**
      * ID of the search result set, entries are only valid in context of this ID
      */
@@ -164,11 +159,6 @@ export interface TourSearchResponse {
      * Number of departures found
      */
     TourDeparturesCount: number
-
-    /**
-     * Metadata links
-     */
-    Links: Array<Link>
 }
 
 export interface Flight {
@@ -181,7 +171,7 @@ export interface Flight {
 
 export type TransportMode = "Flight"
 
-export interface FlightLeg {
+export interface FlightLeg extends LinkedObject {
     Id: string
     FlightNumber: string
     SetupId: number
@@ -196,7 +186,6 @@ export interface FlightLeg {
     OperatingCarrier: FlightCarrier
     IsMandatory: boolean
     IsDefault: boolean
-    Links: Array<Link>
 }
 
 export interface FlightCarrier {

@@ -1,4 +1,5 @@
-import { APIGroup, Link, PassengerAssignment } from "./common";
+import { Tasks } from "../models";
+import { APIGroup, LinkedObject, PassengerAssignment } from "./common";
 
 /**
  * API Request Parameters to create a new {@link Reservation}
@@ -19,7 +20,7 @@ export interface CreateReservationRequest {
  * Booking / Reservatioen
  * 
  */
-export interface Reservation {
+export interface Reservation extends LinkedObject {
     
     /**
      * Booking ID 
@@ -145,7 +146,6 @@ export interface Reservation {
 
     PrincipalComponentId: number
     PrincipalComponentName: string
-    Links: Array<Link>
 }
 
 /**
@@ -263,6 +263,12 @@ export interface ReservationUpdateOperation {
     op: "replace"
 }
 
+interface AddComponentRequest {
+    CacheId: string
+    ParentComponentId?: number
+    ReplaceComponentId?: number
+}
+
 export class Api extends APIGroup {
 
     public async create(params: CreateReservationRequest): Promise<Reservation> {
@@ -296,6 +302,24 @@ export class Api extends APIGroup {
         return rsp.data
     }
 
+    public async addComponent(reservationId: string | number, componentId: string, parentComponentId?: number, replaceComponentId?: number): Promise<boolean> {
+        const req: AddComponentRequest = {
+            CacheId: componentId,
+            ParentComponentId: parentComponentId,
+            ReplaceComponentId: replaceComponentId,
+        }
+
+        try {
+            const rsp = await this.axios.post(`/sales/reservations/${reservationId}/components`, req)
+
+            console.log(rsp.data)
+        } catch(err) {
+            console.error(err)
+        }
+        
+        return true
+    }
+
     /**
      * Perform arbitrary alterations to a booking.
      * 
@@ -307,5 +331,14 @@ export class Api extends APIGroup {
     public async update(id: string, updates: Array<ReservationUpdateOperation>): Promise<void> {
         await this.axios.patch(`/sales/reservations/${id}`, updates)
         return 
+    }
+
+    /**
+     * Get the tasks attached to a reservation
+     * 
+     * @param id Reservation ID
+     */
+    public async tasks(id: string): Promise<Array<Tasks.Task>> {
+        return (await this.axios.get<Array<Tasks.Task>>(`/sales/reservations/${id}/tasks`)).data
     }
 }

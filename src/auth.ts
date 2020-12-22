@@ -1,7 +1,6 @@
 import Axios, { AxiosRequestConfig } from "axios"
 import { USER_AGENT } from "./user_agent"
-import * as qs from 'qs'
-
+import qs from 'qs'
 export interface Response {
     access_token: string
     expires_in: number
@@ -72,6 +71,17 @@ export type CredentialsProvider = () => Promise<ClientCredentials>
 /**
  * ConstantCredentials creates a new CredentialsProvider which always returns the credentials
  * used to create it.
+ * 
+ * @example
+ * ````javascript
+ * import * as TigerBay from 'tigerbay';
+ * const provider = TigerBay.Auth.ConstantCredentials(
+ *  {
+ *      clientId: 'myClientId', 
+ *      clientSecret: 'myClientSecret'
+ *  }
+ * );
+ * ````
  * 
  * @param credentials Static credentials to return
  */

@@ -9,6 +9,9 @@ export interface Link {
     Method: string
 }
 
+export interface LinkedObject {
+    Links: Array<Link>
+}
 
 
 /**

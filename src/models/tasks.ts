@@ -1,4 +1,4 @@
-import { APIGroup, Link } from "./common";
+import { APIGroup, Link, LinkedObject } from "./common";
 
 export interface CreateTaskRequest {
     TaskType: TaskTypeName
@@ -17,12 +17,11 @@ export interface TaskType {
     Name: TaskTypeName
 }
 
-export interface Task {
+export interface Task extends LinkedObject {
     ID: number
     Description: string
     Status: "Late"
     TaskType: TaskType
-    Links: Array<Link>
     DueDateTime?: Date
     LastModifiedDate: Date
 }

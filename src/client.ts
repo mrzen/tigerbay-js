@@ -1,9 +1,9 @@
-import { Notes, Reservations, Tasks, Tours } from './models.js'
+import { Customers, Notes, Reservations, Tasks, Tours } from './models'
 import Axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
-import { USER_AGENT } from './user_agent.js'
-import * as Auth from './auth.js'
-export * as Auth from './auth.js'
-export * as Models from './models.js'
+import { USER_AGENT } from './user_agent'
+import * as Auth from './auth'
+export * as Auth from './auth'
+export * as Models from './models'
 
 /**
  * Base Client for TigerBay reservation system
@@ -65,6 +65,13 @@ export class Client {
      */
     public get notes(): Notes.Api {
         return new Notes.Api(this.axios)
+    }
+
+    /**
+     * Access Customer management API actions
+     */
+    public get customers(): Customers.Api {
+        return new Customers.Api(this.axios)
     }
 
     /**

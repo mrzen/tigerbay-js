@@ -3,7 +3,7 @@ import * as AxiosLogger from 'axios-logger'
 import Faker from 'faker'
 import { Passenger } from '../src/models/reservations';
 
-async function makeBooking(): Promise<TigerBay.Reservations.Reservation> {
+async function makeBooking(): Promise<TigerBay.Models.Reservations.Reservation> {
 
     const today = new Date();
     const credentials = TigerBay.Auth.ConstantCredentials({ clientId: 'website', clientSecret: 'Secret' });
@@ -15,9 +15,9 @@ async function makeBooking(): Promise<TigerBay.Reservations.Reservation> {
     })
 
     client.onRequest(AxiosLogger.requestLogger);
-    // client.onResponse(AxiosLogger.responseLogger);
+   // client.onResponse(AxiosLogger.responseLogger);
 
-    let booking = await client.reservations.create({ BrandChannelId: 8, Currency: "GBP" });
+    let booking = await client.reservations.create({ BrandChannelId: 8, Currency: "XXX" });
 
     const passengers: Array<Passenger> = [await client.reservations.addPassenger(booking.BookingReference, {
         IsLead: true,
@@ -43,38 +43,31 @@ async function makeBooking(): Promise<TigerBay.Reservations.Reservation> {
 
     const search = await client.tours.search({
         ReservationId: booking.Id,
-        TourReference: 'POLCL',
         SalesChannel: "Web",
         DateRange: {
-            From: new Date("2021-05-17"),
-            To: new Date("2021-05-17")
+            From: new Date("2021-02-01"),
+            To: new Date("2021-04-01")
         }
     });
 
     if (search.TourDeparturesCount == 0) {
-        throw new Error(`No departures found for search`)
+        throw new Error('No departures found for search')
     }
 
     const departure = (await client.tours.departures(search.Id))[0];
-
-    // const flights = await client.tours.flights(search.Id, departure.Id);
-
-    // const defaultFlight = flights.filter(flight => flight.RateOption === "Default")[0]
-
-    // // await client.reservations.assign(search.Id, departure.Id, {
-    // //     "FlightGroups": [{
-    // //         ComponentId: defaultFlight.Id,
-    // //         PassengerIds: passengers.map(p => p.Id)   
-    // //     }]
-    // // })
-
     const accommodation = await client.tours.accommodation(search.Id, departure.Id)
-
     const defaultAccommodation = accommodation.filter(a => a.IsDefault)[0];
 
     client.reservations.assign(search.Id, departure.Id, {
+        "Accommodations": [
+            {
+                ComponentId: defaultAccommodation.Id,
+                PassengerIds: passengers.map(p => p.Id)
+            }
+        ]
     })
 
+    await client.reservations.addComponent(booking.Id, departure.Id)
     
     return await client.reservations.find(booking.BookingReference);
 }
@@ -85,6 +78,4 @@ makeBooking().then(booking => {
     console.log(`Total Price: ${booking.TotalPrice.Value}`)
 }).catch(error => {
     console.error(`Unable to create booking: ${error.message}`)
-
-    console.log(error.response);
 })
