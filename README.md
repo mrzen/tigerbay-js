@@ -4,6 +4,7 @@ Tigerbay JS
 [![NPM Package](https://img.shields.io/npm/v/tigerbay)](https://https://www.npmjs.com/package/tigerbay)
 
 
+
 JavaScript API Client for [TigerBay](https://www.tigerbay.co.uk/).
 This API is designed primarily for use in NodeJS but can be used in the browser.
 
@@ -57,3 +58,17 @@ Gets the credentials from the process environment. An optional prefix can be giv
 // Uses `REX_CLIENT_ID` and `REX_CLIENT_SECRET`
 const credentials = TigerBay.Auth.EnvCredentials('REX');
 ````
+
+## Resources
+
+The API surface is broken down into resource-oriented modules. These modules are accessed through
+a [`TigerBay.Client`](https://mrzen.github.io/tigerbay-js/classes/_client_.client.html) instance.
+
+
+## Interceptors
+
+The API client is built on [Axios](https://github.com/axios/axios) and exposes methods to add or
+remove request and response interceptors:
+
+* [`onRequest`](https://mrzen.github.io/tigerbay-js/classes/_client_.client.html#onrequest) 
+* [`onResponse`](https://mrzen.github.io/tigerbay-js/classes/_client_.client.html#onresponse)
