@@ -1,6 +1,9 @@
 Tigerbay JS
 ===========
 
+[![NPM Package](https://img.shields.io/npm/v/tigerbay)](https://https://www.npmjs.com/package/tigerbay)
+
+
 JavaScript API Client for [TigerBay](https://www.tigerbay.co.uk/).
 This API is designed primarily for use in NodeJS but can be used in the browser.
 
