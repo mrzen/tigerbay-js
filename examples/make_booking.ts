@@ -2,6 +2,7 @@ import * as TigerBay from '../src/client'
 import * as AxiosLogger from 'axios-logger'
 import Faker from 'faker'
 import { Passenger } from '../src/models/reservations';
+import { PassengerAssignment } from '../src/models/common';
 
 async function makeBooking(): Promise<TigerBay.Models.Reservations.Reservation> {
 
@@ -15,9 +16,9 @@ async function makeBooking(): Promise<TigerBay.Models.Reservations.Reservation> 
     })
 
     client.onRequest(AxiosLogger.requestLogger);
-   // client.onResponse(AxiosLogger.responseLogger);
+    client.onResponse(AxiosLogger.responseLogger);
 
-    let booking = await client.reservations.create({ BrandChannelId: 8, Currency: "XXX" });
+    let booking = await client.reservations.create({ BrandChannelId: 8, Currency: "GBP" });
 
     const passengers: Array<Passenger> = [await client.reservations.addPassenger(booking.BookingReference, {
         IsLead: true,
@@ -56,15 +57,23 @@ async function makeBooking(): Promise<TigerBay.Models.Reservations.Reservation> 
 
     const departure = (await client.tours.departures(search.Id))[0];
     const accommodation = await client.tours.accommodation(search.Id, departure.Id)
+
+    // Build the room assignments
     const defaultAccommodation = accommodation.filter(a => a.IsDefault)[0];
+    const roomCapacity = defaultAccommodation.Occupancy.To;
+
+    const roomAssignments: Array<PassengerAssignment> = [];
+    
+    for (let idx = 0; idx < passengers.length; idx += roomCapacity) {
+
+        roomAssignments.push({
+            ComponentId: defaultAccommodation.Id,
+            PassengerIds: passengers.slice(idx, roomCapacity).map(p => p.Id)
+        });
+    }
 
     client.reservations.assign(search.Id, departure.Id, {
-        "Accommodations": [
-            {
-                ComponentId: defaultAccommodation.Id,
-                PassengerIds: passengers.map(p => p.Id)
-            }
-        ]
+        "Accommodations": roomAssignments
     })
 
     await client.reservations.addComponent(booking.Id, departure.Id)
