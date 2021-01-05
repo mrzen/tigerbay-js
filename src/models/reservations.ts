@@ -297,11 +297,44 @@ export class Api extends APIGroup {
         return rsp.data
     }
 
+    /**
+     * Assign passengers to services
+     * 
+     * ````typescript
+     * const assignments: ServiceAssignmentRequest = {
+     *      "Accommodations": [
+     *          {   
+     *              "ComponentId": idOfTheComponent,
+     *              "PassengerIds": [passenger_1, passenger_2, passenger_3]
+     *          }  
+     *      ]
+     * }
+     * 
+     * try {
+     *      await client.reservations.assign(searchId, resultId, assignments)
+     * } catch(error) { 
+     *      console.error(`Unable to assign passengers: ${error.message}`) 
+     * }
+     * ````
+     * 
+     * @param searchId Search result set ID
+     * @param resultId Result/Departure ID
+     * @param assignment Details of the services to be assigned
+     */
     public async assign(searchId: string, resultId: string, assignment: ServiceAssignmentRequest): Promise<Record<string, any>> {
         const rsp = await this.axios.post(`/toursSearch/searches/${searchId}/tourDepartures/${resultId}/combinations`, assignment)
         return rsp.data
     }
 
+
+    /**
+     * Add a service component to a reservation
+     * 
+     * @param reservationId ID of the reservation to add the component to
+     * @param componentId The ID of the component to add
+     * @param parentComponentId If specified, the added component will be a child component of the component with this ID
+     * @param replaceComponentId If specified, the added component will replace the component with this ID
+     */
     public async addComponent(reservationId: string | number, componentId: string, parentComponentId?: number, replaceComponentId?: number): Promise<boolean> {
         const req: AddComponentRequest = {
             CacheId: componentId,
@@ -311,8 +344,6 @@ export class Api extends APIGroup {
 
         try {
             const rsp = await this.axios.post(`/sales/reservations/${reservationId}/components`, req)
-
-            console.log(rsp.data)
         } catch(err) {
             console.error(err)
         }
@@ -324,6 +355,26 @@ export class Api extends APIGroup {
      * Perform arbitrary alterations to a booking.
      * 
      * @warning Direct use of this method should be avoided, and convenience methods used where available.
+     * 
+     * @example
+     * 
+     * ````typescript
+     * 
+     * const updates: Array<TigerBay.Models.Reservations.ReservationUpdateOperation> = [
+     *  {
+     *      "op": "replace",
+     *      "path": "/customerId",
+     *      "value": 4830
+     *  },
+     *  {
+     *      "op": "replace",
+     *      "path": "/ConditionsAccepted",
+     *      "value": true
+     *  }
+     * ]
+     * 
+     * await client.reservations.update(bookingId, updates)
+     * ````
      * 
      * @param id ID of the booking to update
      * @param updates A collection of update operations to perform
