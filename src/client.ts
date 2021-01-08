@@ -127,13 +127,13 @@ export interface ClientConfig {
     /**
      * Base URL for the API
      */
-    baseUrl: string | URL
+    baseUrl: string
 
 
     /**
      * Authentication URL -  Set this if different to baseUrl
      */
-    authUrl?: string | URL | undefined
+    authUrl?: string | undefined
 
 
     /**

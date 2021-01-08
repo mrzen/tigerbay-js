@@ -16,7 +16,7 @@ export interface CreatePaymentRequest {
     /**
      * URL to return the user to after making the payment
      */
-    ReturnUrl: string | URL
+    ReturnUrl: string
 
     /**
      * ID of the customer contact to associate the payment with
@@ -37,7 +37,7 @@ export interface PaymentAmount {
 export interface CreatePaymentResponse extends LinkedObject {
     Id: number
     ReservationId: number
-    Url: string | URL
+    Url: string
     Message: string
 }
 
