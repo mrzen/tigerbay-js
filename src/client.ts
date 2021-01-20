@@ -20,9 +20,9 @@ export class Client {
      */
     protected axios: AxiosInstance
 
-    constructor(config: ClientConfig) {
+    constructor(config: ClientConfig, requestConfig?: AxiosRequestConfig) {
         this.config = config
-        this.axios = Axios.create()
+        this.axios = Axios.create(requestConfig)
 
         this.axios.defaults.baseURL = config.baseUrl.toString()
         this.axios.defaults.timeout = this.config.timeout
