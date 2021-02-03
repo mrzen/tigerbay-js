@@ -204,7 +204,7 @@ export interface Inventory {
 export interface FlightPricing {
     TotalPrice: Price
     WasPrice: Price
-    OverrideRules: OverrideRules
+    OverrideRules: OverrideRules | null
 }
 
 export type OverrideRuleType = "PerPerson"

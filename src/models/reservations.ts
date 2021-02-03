@@ -160,7 +160,7 @@ export interface Price {
     /**
      * Details of the currency itself
      */
-    CurrencyDetails: CurrencyDetails
+    CurrencyDetails: CurrencyDetails | null
 
     /**
      * Value
