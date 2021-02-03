@@ -78,7 +78,7 @@ export interface GuideTourPricing {
     WasPricePerPerson: Price
     NowPricePerPerson: Price
     Promos: Array<String>
-    PromosTotalPricePerPerson: Price 
+    PromosTotalPerPerson: Price 
 }
 
 export interface BoardBasis {
