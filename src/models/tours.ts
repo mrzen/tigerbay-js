@@ -58,7 +58,7 @@ export interface AccommodationUnit extends LinkedObject {
     UnitType: string
     BedType: string
     Occupancy: Occupancy
-    AdultOccupany: Occupancy
+    AdultOccupancy: Occupancy
     ChildOccupancy: Occupancy
     InfantOccupancy: Occupancy
     StandardOccupancy: number
