@@ -71,6 +71,14 @@ export interface AccommodationUnit extends LinkedObject {
     IsMandatory: boolean
     IsDefault: boolean
     BoardBasisBreakdown: Array<BoardBasis>
+    GuideTourPricing: GuideTourPricing
+}
+
+export interface GuideTourPricing {
+    WasPricePerPerson: Price
+    NowPricePerPerson: Price
+    Promos: Array<String>
+    PromosTotalPricePerPerson: Price 
 }
 
 export interface BoardBasis {
