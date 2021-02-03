@@ -70,6 +70,15 @@ export interface AccommodationUnit extends LinkedObject {
     Accommodation: Accommodation
     IsMandatory: boolean
     IsDefault: boolean
+    BoardBasisBreakdown: Array<BoardBasis>
+}
+
+export interface BoardBasis {
+    Name: string
+    Reference: string
+    Description: string
+    StartDate: Date
+    EndDatE: Date
 }
 
 export interface Accommodation extends LinkedObject {
