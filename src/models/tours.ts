@@ -78,7 +78,7 @@ export interface BoardBasis {
     Reference: string
     Description: string
     StartDate: Date
-    EndDatE: Date
+    EndDate: Date
 }
 
 export interface Accommodation extends LinkedObject {
