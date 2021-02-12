@@ -46,8 +46,8 @@ async function makeBooking(): Promise<TigerBay.Models.Reservations.Reservation> 
         ReservationId: booking.Id,
         SalesChannel: "Web",
         DateRange: {
-            From: new Date("2021-02-01"),
-            To: new Date("2021-04-01")
+            From: new Date(),
+            To: new Date("2021-12-31")
         }
     });
 
@@ -56,6 +56,9 @@ async function makeBooking(): Promise<TigerBay.Models.Reservations.Reservation> 
     }
 
     const departure = (await client.tours.departures(search.Id))[0];
+
+    console.log(`Departure: ${departure.Reference}`)
+
     const accommodation = await client.tours.accommodation(search.Id, departure.Id)
 
     // Build the room assignments
