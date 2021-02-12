@@ -385,6 +385,17 @@ export class Api extends APIGroup {
     }
 
     /**
+     * Perform arbitrary updates to a booking passenger.
+     * 
+     * See {@link update} for more detailed information on updates
+     * 
+     */
+    public async updatePassenger(id: number, passengerId: number, updates: ReservationUpdateOperation[]): Promise<void> {
+        await this.axios.patch(`/sales/reservations/${id}/passengers/${passengerId}`, updates);
+        return
+    }
+
+    /**
      * Get the tasks attached to a reservation
      * 
      * @param id Reservation ID
