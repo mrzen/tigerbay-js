@@ -380,7 +380,11 @@ export class Api extends APIGroup {
      * @param updates A collection of update operations to perform
      */
     public async update(id: string, updates: Array<ReservationUpdateOperation>): Promise<void> {
-        await this.axios.patch(`/sales/reservations/${id}`, updates)
+        await this.axios.patch(`/sales/reservations/${id}`, updates, {
+            headers: {
+                "Content-Type": "application/json-patch+json"
+            }
+        })
         return 
     }
 
@@ -391,7 +395,11 @@ export class Api extends APIGroup {
      * 
      */
     public async updatePassenger(id: number, passengerId: number, updates: ReservationUpdateOperation[]): Promise<void> {
-        await this.axios.patch(`/sales/reservations/${id}/passengers/${passengerId}`, updates);
+        await this.axios.patch(`/sales/reservations/${id}/passengers/${passengerId}`, updates, {
+            headers: {
+                "Content-Type": "application/json-patch+json"
+            }
+        });
         return
     }
 
