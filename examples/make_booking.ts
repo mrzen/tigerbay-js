@@ -42,6 +42,13 @@ async function makeBooking(): Promise<TigerBay.Models.Reservations.Reservation> 
         }))
     }
 
+    // Update a passenger
+    await client.reservations.updatePassenger(booking.Id, passengers[0].Id, [{
+        op: "replace",
+        path: "/Forename",
+        value: "Replaced"
+    }])
+
     const search = await client.tours.search({
         ReservationId: booking.Id,
         SalesChannel: "Web",
