@@ -13,7 +13,7 @@ export interface CreateReservationRequest {
     /**
      * ISO code for the currency
      */
-    Currency: string
+    CurrencyCode: string
 }
 
 /**
