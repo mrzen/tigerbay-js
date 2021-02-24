@@ -45,6 +45,16 @@ export class Api extends APIGroup {
     public async accommodation(searchId: string, resultId: string): Promise<Array<AccommodationUnit>> {
         return (await this.axios.get<Array<AccommodationUnit>>(`/toursSearch/searches/${searchId}/tourDepartures/${resultId}/accommodationUnits`)).data
     }
+
+    /**
+     * Get tour extras
+     * 
+     * @param searchId ID of the result set created with {@link search}
+     * @param resultId Id of the result item found with {@link departures}
+     */
+    public async extras(searchId: string, resultId: string): Promise<TourExtra[]> {
+        return (await this.axios.get<TourExtra[]>(`/toursSearch/searches/${searchId}/tourDepartures/${resultId}/extras`)).data
+    }
 }
 
 export interface AccommodationUnit extends LinkedObject {
@@ -232,4 +242,22 @@ export interface OverrideRules {
     ChildPrice: Price
     InfantPrice: Price
     UnitPrice: Price
+}
+
+export interface TourExtra extends LinkedObject {
+    Id: string
+    SetupId: string
+    Name: string
+    Reference: string
+    Occupancy: Occupancy
+    AdultOccupancy: Occupancy
+    ChildOccupancy: Occupancy
+    InfantOccupancy: Occupancy
+    Source: string
+    Type: { Name: string }
+    Duration: DateRange
+    InventoryDetails: Inventory
+    Pricing: FlightPricing
+    IsMandatory: boolean
+    IsDefault: boolean
 }
