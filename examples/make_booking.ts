@@ -18,7 +18,7 @@ async function makeBooking(): Promise<TigerBay.Models.Reservations.Reservation> 
     client.onRequest(AxiosLogger.requestLogger);
     client.onResponse(AxiosLogger.responseLogger);
 
-    let booking = await client.reservations.create({ BrandChannelId: 8, Currency: "GBP" });
+    let booking = await client.reservations.create({ BrandChannelId: 8, CurrencyCode: "GBP" });
 
     const passengers: Array<Passenger> = [await client.reservations.addPassenger(booking.BookingReference, {
         IsLead: true,
