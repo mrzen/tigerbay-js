@@ -14,6 +14,10 @@ export default class CacheApi extends APIGroup {
     public async status(): Promise<CacheStats> {
         return (await this.axios.get('/toursearch/cache/status')).data
     }
+
+    public async find(id: string): Promise<Departure> {
+        return (await this.axios.get<Departure>(`/toursearch/departures/${id}`)).data;
+    }
 }
 
 export interface CacheStats {
