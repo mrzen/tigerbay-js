@@ -68,6 +68,9 @@ export interface CustomerContact {
     Description?: string
 }
 
+export interface CustomerContactResponse extends CustomerContact {
+    Id: number
+}
 export class Api extends APIGroup {
 
     /**
@@ -91,7 +94,7 @@ export class Api extends APIGroup {
         return (await this.axios.post<Customer>(`/sales/customers`, params)).data
     }
 
-    public async createContact(customerId: number, contact: CustomerContact): Promise<Customer> {
-        return (await this.axios.post<Customer>(`/sales/customers/${customerId}/contacts`, contact)).data
+    public async createContact(customerId: number, contact: CustomerContact): Promise<CustomerContactResponse> {
+        return (await this.axios.post<CustomerContactResponse>(`/sales/customers/${customerId}/contacts`, contact)).data
     }
 }
