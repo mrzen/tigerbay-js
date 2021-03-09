@@ -1,5 +1,5 @@
 import qs from "qs";
-import { APIGroup, Link, LinkedObject } from "./common";
+import { APIGroup, LinkedObject } from "./common";
 
 export interface CustomerSearchRequest {
     username?: string
@@ -23,16 +23,25 @@ export interface Customer extends LinkedObject {
     Tags: string
     AgentId: number
     DoNotEmail: boolean
-    DoNotMail: true
+    DoNotMail: boolean
     Reference: string
     ExternalReference: string
 }
 
 export interface CreateCustomerRequest {
-    Username?: string
     Title: string
     Forename: string
     Surname: string
+    Username?: string
+    EmailAddress?: string
+    DateOfBirth?: Date
+    Tags?: string
+    AgentId?: number
+    DoNotEmail?: boolean
+    DoNotMail?: boolean
+    Reference?: string
+    ExternalReference?: string
+    Gender?: Gender
 }
 
 export type ContactType = "Primary"
