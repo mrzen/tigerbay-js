@@ -1,5 +1,23 @@
+import QueryString from "qs";
 import { Tasks } from "../models";
 import { APIGroup, LinkedObject, PassengerAssignment } from "./common";
+
+
+export interface FindReservationRequest {
+    bookingReference: string | null
+    leadPassengerSurname: string | null
+    departureDateMinimum: Date | null
+    departureDateMaximum: Date | null
+    customerId: number | null
+}
+
+export interface FindReservationResponse extends LinkedObject {
+    Id: number
+    PassengerCount: number
+    ComponentCount: number
+    QuotedByUserId: number
+    OwnerUserId: number
+}
 
 /**
  * API Request Parameters to create a new {@link Reservation}
@@ -274,6 +292,11 @@ export class Api extends APIGroup {
     public async create(params: CreateReservationRequest): Promise<Reservation> {
         const rsp = await this.axios.post<Reservation>("/sales/reservations/", params)
         return rsp.data
+    }
+
+    public async search(params: FindReservationRequest): Promise<FindReservationResponse[]> {
+        const query = QueryString.stringify(params, { skipNulls: true })
+        return (await this.axios.get<FindReservationResponse[]>(`/sales/reservations?${query}`)).data
     }
 
     /**
