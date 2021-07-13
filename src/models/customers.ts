@@ -85,6 +85,10 @@ export class Api extends APIGroup {
         return (await this.axios.get<Array<Customer>>(`/sales/customers/search?${query}`)).data
     }
 
+    public async find(id: number): Promise<Customer> {
+        return (await this.axios.get<Customer>(`/sales/customers/${id}`)).data
+    }
+
     /**
      * Create a new customer
      * 
