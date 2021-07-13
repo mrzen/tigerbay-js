@@ -287,6 +287,41 @@ interface AddComponentRequest {
     ReplaceComponentId?: number
 }
 
+
+export interface BookingComponentListEntry extends LinkedObject {
+    Id: number
+    SetupId: number
+    ContinuityId: number
+    Name: string
+    Description: string
+    ComponentType: string
+    ComponentSubType: string
+    ParentId: number
+    Price: Price
+    Status: string
+    QuotedByUserId: number
+    OwnerUserId: number
+}
+
+export interface BookingComponent extends BookingComponentListEntry {
+    ConfirmationReference: string
+    StartDate: Date
+    EndDate: Date
+    Reference: string
+    SupplierId: number
+    Tags: string
+    PerPassengerPrices: ComponentPassengerPrice[]
+    PrimarySetupLocationId: number
+    SecondarySetupLocationId: number
+    BaseSetupId: number
+    Link: string
+}
+
+export interface ComponentPassengerPrice {
+    PassengerId: number
+    Price: Price
+}
+
 export class Api extends APIGroup {
 
     public async create(params: CreateReservationRequest): Promise<Reservation> {
@@ -443,5 +478,13 @@ export class Api extends APIGroup {
     public async confirm(id: string): Promise<void> {
         const params = {ReservationId: id}
         await this.axios.post(`/sales/reservations/confirmations`, params)
+    }
+
+    public async components(bookingId: number): Promise<BookingComponentListEntry[]> {
+        return (await this.axios.get<BookingComponentListEntry[]>(`/sales/reservations/${bookingId}/components`)).data
+    }
+
+    public async component(bookingId: number, componentId: number): Promise<BookingComponent> {
+        return (await this.axios.get<BookingComponent>(`/sales/reservations/${bookingId}/components/${componentId}`)).data
     }
 }
