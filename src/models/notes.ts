@@ -9,7 +9,8 @@ export type NoteType = "SpecialRequest" | "Amendment" | "Diet" | "Medical" | "Cu
                      | "SailingQualification" | "Representative" | "CreditControl" 
                      | "PassportAndVisaInformation" | "ImportantInformation" | "Recommended"
 
-export interface Note {
+export interface Note extends LinkedObject {
+    Id: number
     Type: NoteType
     Title: string
     Text: string

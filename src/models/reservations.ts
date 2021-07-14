@@ -1,6 +1,7 @@
 import QueryString from "qs";
 import { Tasks } from "../models";
 import { APIGroup, LinkedObject, PassengerAssignment } from "./common";
+import { Note, NoteType } from "./notes";
 
 
 export interface FindReservationRequest {
@@ -322,6 +323,12 @@ export interface ComponentPassengerPrice {
     Price: Price
 }
 
+export interface AddNoteRequest {
+    Type: NoteType
+    Title: string
+    Text: string
+}
+
 export class Api extends APIGroup {
 
     public async create(params: CreateReservationRequest): Promise<Reservation> {
@@ -509,5 +516,13 @@ export class Api extends APIGroup {
      */
     public async passengers(id: number): Promise<Passenger[]> {
         return (await this.axios.get<Passenger[]>(`/sales/reservations/${id}/passengers`)).data
+    }
+
+    public async addNote(id: number, note: AddNoteRequest): Promise<Note> {
+        return (await this.axios.post<Note>(`/sales/reservations/${id}/notes`, note)).data
+    }
+
+    public async notes(id: number): Promise<Note[]> {
+        return (await this.axios.get<Note[]>(`/sales/reservations/${id}/notes`)).data
     }
 }
