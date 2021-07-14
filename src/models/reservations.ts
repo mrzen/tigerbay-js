@@ -480,11 +480,34 @@ export class Api extends APIGroup {
         await this.axios.post(`/sales/reservations/confirmations`, params)
     }
 
+    /**
+     * Get the components which are part of the booking
+     * 
+     * @param bookingId Booking ID
+     * @returns List of booking components
+     */
     public async components(bookingId: number): Promise<BookingComponentListEntry[]> {
         return (await this.axios.get<BookingComponentListEntry[]>(`/sales/reservations/${bookingId}/components`)).data
     }
 
+    /**
+     * Get details of a single component of a booking
+     * 
+     * @param bookingId Booking ID
+     * @param componentId Component ID
+     * @returns Component Details
+     */
     public async component(bookingId: number, componentId: number): Promise<BookingComponent> {
         return (await this.axios.get<BookingComponent>(`/sales/reservations/${bookingId}/components/${componentId}`)).data
+    }
+
+    /**
+     * Get the passengers on a booking
+     * 
+     * @param id Booking ID
+     * @returns List of passengers
+     */
+    public async passengers(id: number): Promise<Passenger[]> {
+        return (await this.axios.get<Passenger[]>(`/sales/reservations/${id}/passengers`)).data
     }
 }
