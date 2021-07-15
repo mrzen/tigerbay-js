@@ -2,6 +2,7 @@ import QueryString from "qs";
 import { Tasks } from "../models";
 import { APIGroup, LinkedObject, PassengerAssignment } from "./common";
 import { Note, NoteType } from "./notes";
+import { Payment } from "./payments";
 
 
 export interface FindReservationRequest {
@@ -518,11 +519,35 @@ export class Api extends APIGroup {
         return (await this.axios.get<Passenger[]>(`/sales/reservations/${id}/passengers`)).data
     }
 
+    /**
+     * 
+     * Add a new note to a reservation
+     * 
+     * @param id Reservation ID
+     * @param note Note Data
+     * @returns Created Note
+     */
     public async addNote(id: number, note: AddNoteRequest): Promise<Note> {
         return (await this.axios.post<Note>(`/sales/reservations/${id}/notes`, note)).data
     }
 
+    /**
+     * Get Notes for a reservation
+     * 
+     * @param id Booking ID
+     * @returns Booking Notes
+     */
     public async notes(id: number): Promise<Note[]> {
         return (await this.axios.get<Note[]>(`/sales/reservations/${id}/notes`)).data
+    }
+
+    /**
+     * Get payments for a reservation
+     * 
+     * @param id Reservation ID
+     * @returns Payments
+     */
+    public async payments(id: number): Promise<Payment[]> {
+        return (await this.axios.get<Payment[]>(`/sales/reservations/${id}/payments`)).data
     }
 }
