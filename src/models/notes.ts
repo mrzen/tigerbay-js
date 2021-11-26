@@ -16,6 +16,12 @@ export interface Note extends LinkedObject {
     Text: string
 }
 
+export interface NotePayload {
+    Type: NoteType
+    Title: string
+    Text: string
+}
+
 export class Api extends APIGroup {
 
 
@@ -31,18 +37,17 @@ export class Api extends APIGroup {
      * @param thing Resource to attach a note to
      * @param note Note to create
      */
-    public async add(thing: LinkedObject, note: Note): Promise<void> {
-        const selfLink = thing.Links.filter(link => link.Rel == "self");
+    public async add(thing: LinkedObject, note: NotePayload): Promise<void> {
+        const selfLink = thing.Links.find(link => link.Rel == "self");
 
-        if (selfLink.length !== 1) {
+        if (!selfLink ) {
             throw new Error("Unable to find self-link for given object")
         }
 
         try {
-            await this.axios.post(`${selfLink[0]}/notes`, note)
+            await this.axios.post(`${selfLink}/notes`, note)
         } catch(error) {
-            const err: AxiosError = error
-
+            const err = error as AxiosError
 
             if (err.response?.status === 404) {
                 throw new Error("Specified resource does not support notes")
