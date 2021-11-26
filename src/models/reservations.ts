@@ -261,6 +261,7 @@ export interface Passenger {
 export interface ServiceAssignmentRequest {
     FlightGroups?: Array<PassengerAssignment>
     Accommodations?: Array<PassengerAssignment>
+    Extras?: Array<PassengerAssignment>
 }
 
 /**
