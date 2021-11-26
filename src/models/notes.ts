@@ -45,7 +45,7 @@ export class Api extends APIGroup {
         }
 
         try {
-            await this.axios.post(`${selfLink}/notes`, note)
+            await this.axios.post(`${selfLink.Href}/notes`, note)
         } catch(error) {
             const err = error as AxiosError
 
