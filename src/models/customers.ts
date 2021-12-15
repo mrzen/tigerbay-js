@@ -71,11 +71,12 @@ export interface CustomerContact {
 export interface CustomerContactResponse extends CustomerContact {
     Id: number
 }
+
 export class Api extends APIGroup {
 
     /**
      * Search existing customers
-     * 
+     *
      * @param params Search query parameters
      */
     public async search(params: CustomerSearchRequest): Promise<Array<Customer>> {
@@ -91,11 +92,19 @@ export class Api extends APIGroup {
 
     /**
      * Create a new customer
-     * 
+     *
      * @param params Customer information
      */
     public async create(params: CreateCustomerRequest): Promise<Customer> {
         return (await this.axios.post<Customer>(`/sales/customers`, params)).data
+    }
+
+    /**
+     * List contact addresses for a customer
+     * @param customerId
+     */
+    public async contacts(customerId: number): Promise<CustomerContactResponse[]> {
+        return (await this.axios.get<CustomerContactResponse[]>(`/sales/customers/${customerId}/contacts`)).data
     }
 
     public async createContact(customerId: number, contact: CustomerContact): Promise<CustomerContactResponse> {
