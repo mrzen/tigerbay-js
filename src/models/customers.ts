@@ -26,6 +26,7 @@ export interface Customer extends LinkedObject {
     DoNotMail: boolean
     Reference: string
     ExternalReference: string
+    TypeId: number
 }
 
 export interface CreateCustomerRequest {
@@ -42,6 +43,7 @@ export interface CreateCustomerRequest {
     Reference?: string
     ExternalReference?: string
     Gender?: Gender
+    TypeId?: number
 }
 
 export type ContactType = "Primary"
