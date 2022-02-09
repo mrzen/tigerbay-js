@@ -1,6 +1,6 @@
 import QueryString from "qs";
 import { Tasks } from "../models";
-import { APIGroup, LinkedObject, PassengerAssignment } from "./common";
+import { APIGroup, LinkedObject, PassengerAssignment, PatchPayload } from "./common";
 import { Note, NoteType } from "./notes";
 import { Payment } from "./payments";
 
@@ -264,25 +264,6 @@ export interface ServiceAssignmentRequest {
     Extras?: Array<PassengerAssignment>
 }
 
-/**
- * Descriptor of an update operation to be made against a reservation
- */
-export interface ReservationUpdateOperation {
-    /**
-     * Value to set/add
-     */
-    value: any
-
-    /**
-     * Path to the target field
-     */
-    path: string
-
-    /**
-     * Operation to perform
-     */
-    op: "replace"
-}
 
 interface AddComponentRequest {
     CacheId: string
@@ -446,7 +427,7 @@ export class Api extends APIGroup {
      * @param id ID of the booking to update
      * @param updates A collection of update operations to perform
      */
-    public async update(id: string, updates: Array<ReservationUpdateOperation>): Promise<void> {
+    public async update(id: string, updates: PatchPayload[]): Promise<void> {
         await this.axios.patch(`/sales/reservations/${id}`, updates, {
             headers: {
                 "Content-Type": "application/json-patch+json"
@@ -461,7 +442,7 @@ export class Api extends APIGroup {
      * See {@link update} for more detailed information on updates
      * 
      */
-    public async updatePassenger(id: number, passengerId: number, updates: ReservationUpdateOperation[]): Promise<void> {
+    public async updatePassenger(id: number, passengerId: number, updates: PatchPayload[]): Promise<void> {
         await this.axios.patch(`/sales/reservations/${id}/passengers/${passengerId}`, updates, {
             headers: {
                 "Content-Type": "application/json-patch+json"

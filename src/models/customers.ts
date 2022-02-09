@@ -1,5 +1,5 @@
 import qs from "qs";
-import { APIGroup, LinkedObject } from "./common";
+import { APIGroup, LinkedObject, PatchPayload } from "./common";
 
 export interface CustomerSearchRequest {
     username?: string
@@ -97,6 +97,22 @@ export class Api extends APIGroup {
      */
     public async create(params: CreateCustomerRequest): Promise<Customer> {
         return (await this.axios.post<Customer>(`/sales/customers`, params)).data
+    }
+
+    /**
+     * Perform arbitrary update operations to a customer
+     * 
+     * @param customerId 
+     * @param updates 
+     */
+    public async update(customerId: number, updates: PatchPayload[]): Promise<void> {
+        await this.axios.patch(`/sales/customers/${customerId}`, updates, {
+            headers: {
+                "Content-Type": "application/json-patch+json"
+            }
+        })
+
+        return
     }
 
     /**

@@ -36,6 +36,29 @@ export interface PassengerAssignment {
     PassengerIds: Array<number>
 }
 
+
+export type PatchOperation = 'replace'
+
+/**
+ * Descriptor of an update operation to be made against a reservation
+ */
+export interface PatchPayload {
+    /**
+     * Value to set/add
+     */
+    value: any
+
+    /**
+     * Path to the target field
+     */
+    path: string
+
+    /**
+     * Operation to perform
+     */
+    op: PatchOperation
+}
+
 /**
  * Represents a group of actions in the API
  */
