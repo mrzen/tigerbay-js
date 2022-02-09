@@ -35,14 +35,12 @@ export interface CreateCustomerRequest {
     Surname: string
     Username?: string
     EmailAddress?: string
-    DateOfBirth?: Date
     Tags?: string
     AgentId?: number
     DoNotEmail?: boolean
     DoNotMail?: boolean
     Reference?: string
     ExternalReference?: string
-    Gender?: Gender
     TypeId?: number
 }
 
