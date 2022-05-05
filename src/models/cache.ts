@@ -57,10 +57,10 @@ export interface DeparturePrice {
 }
 
 export interface Departure {
-    id: string
-    refreshId: string
+    Id: string
+    RefreshId: string
     DepartureSetupId: number
-    PriceSetupId: number
+    PriceSetId: number
     TourId: number
     Generated: string | Date
     Name: string
