@@ -314,7 +314,7 @@ export interface AddNoteRequest {
 
 export interface ReservationUpdateOperation {
     op: 'replace',
-    path: 'string',
+    path: string,
     value: any
 }
 
