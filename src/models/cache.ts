@@ -79,3 +79,4 @@ export interface Departure {
     MinimumTripleRooms: number
     Tags: string[]
 }
+
