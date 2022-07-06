@@ -38,13 +38,13 @@ export interface CreateReservationRequest {
 
 /**
  * Booking / Reservatioen
- * 
+ *
  */
 export interface Reservation extends LinkedObject {
-    
+
     /**
-     * Booking ID 
-     * 
+     * Booking ID
+     *
      * @readonly
      */
     Id: number
@@ -55,7 +55,7 @@ export interface Reservation extends LinkedObject {
     BookingReference: string
 
     /**
-     * 
+     *
      */
     PartialToken: string
 
@@ -78,12 +78,12 @@ export interface Reservation extends LinkedObject {
      * Start date for the booking (commencement of first service)
      */
     StartDate: Date
-    
+
     /**
      * End date for the booking (conclusion of the last service)
      */
     EndDate: Date
-    
+
     /**
      * Timestamp of when the booking was confirmed
      */
@@ -153,7 +153,7 @@ export interface Reservation extends LinkedObject {
      * System User ID who created the original quote
      */
     QuotedByUserId: number
-    
+
     /**
      * System User ID who owns the booking
      */
@@ -233,7 +233,7 @@ export interface AddPassengerRequest {
 export interface Passenger {
     /**
      * Passenger Id
-     * 
+     *
      * @readonly
      */
     Id: number
@@ -243,11 +243,11 @@ export interface Passenger {
  * Service Assignment Request
  *
  * Assignment is handled as a mapping of service types to a set of {@link PassengerAssignment}s
- * 
+ *
  * @example Setting Flights
- * 
+ *
  * ````typescript
- * 
+ *
  * const flights: ServiceAssignmentRequest = {
  *      "FlightGroups": [
  *          {
@@ -312,6 +312,12 @@ export interface AddNoteRequest {
     Text: string
 }
 
+export interface ReservationUpdateOperation {
+    op: 'replace',
+    path: 'string',
+    value: any
+}
+
 export class Api extends APIGroup {
 
     public async create(params: CreateReservationRequest): Promise<Reservation> {
@@ -326,7 +332,7 @@ export class Api extends APIGroup {
 
     /**
      * Get an existing reservation by ID
-     * 
+     *
      * @param id ID of the booking to get
      */
     public async find(id: string): Promise<Reservation> {
@@ -336,7 +342,7 @@ export class Api extends APIGroup {
 
     /**
      * Add a new passenger to an existing booking
-     * 
+     *
      * @param bookingId ID of the booking to add the passenger to
      * @param passenger Passenger to add to the booking
      */
@@ -347,24 +353,24 @@ export class Api extends APIGroup {
 
     /**
      * Assign passengers to services
-     * 
+     *
      * ````typescript
      * const assignments: ServiceAssignmentRequest = {
      *      "Accommodations": [
-     *          {   
+     *          {
      *              "ComponentId": idOfTheComponent,
      *              "PassengerIds": [passenger_1, passenger_2, passenger_3]
-     *          }  
+     *          }
      *      ]
      * }
-     * 
+     *
      * try {
      *      await client.reservations.assign(searchId, resultId, assignments)
-     * } catch(error) { 
-     *      console.error(`Unable to assign passengers: ${error.message}`) 
+     * } catch(error) {
+     *      console.error(`Unable to assign passengers: ${error.message}`)
      * }
      * ````
-     * 
+     *
      * @param searchId Search result set ID
      * @param resultId Result/Departure ID
      * @param assignment Details of the services to be assigned
@@ -377,7 +383,7 @@ export class Api extends APIGroup {
 
     /**
      * Add a service component to a reservation
-     * 
+     *
      * @param reservationId ID of the reservation to add the component to
      * @param componentId The ID of the component to add
      * @param parentComponentId If specified, the added component will be a child component of the component with this ID
@@ -395,19 +401,19 @@ export class Api extends APIGroup {
         } catch(err) {
             console.error(err)
         }
-        
+
         return true
     }
 
     /**
      * Perform arbitrary alterations to a booking.
-     * 
+     *
      * @warning Direct use of this method should be avoided, and convenience methods used where available.
-     * 
+     *
      * @example
-     * 
+     *
      * ````typescript
-     * 
+     *
      * const updates: Array<TigerBay.Models.Reservations.ReservationUpdateOperation> = [
      *  {
      *      "op": "replace",
@@ -420,10 +426,10 @@ export class Api extends APIGroup {
      *      "value": true
      *  }
      * ]
-     * 
+     *
      * await client.reservations.update(bookingId, updates)
      * ````
-     * 
+     *
      * @param id ID of the booking to update
      * @param updates A collection of update operations to perform
      */
@@ -433,14 +439,14 @@ export class Api extends APIGroup {
                 "Content-Type": "application/json-patch+json"
             }
         })
-        return 
+        return
     }
 
     /**
      * Perform arbitrary updates to a booking passenger.
-     * 
+     *
      * See {@link update} for more detailed information on updates
-     * 
+     *
      */
     public async updatePassenger(id: number, passengerId: number, updates: PatchPayload[]): Promise<void> {
         await this.axios.patch(`/sales/reservations/${id}/passengers/${passengerId}`, updates, {
@@ -453,7 +459,7 @@ export class Api extends APIGroup {
 
     /**
      * Get the tasks attached to a reservation
-     * 
+     *
      * @param id Reservation ID
      */
     public async tasks(id: string): Promise<Array<Tasks.Task>> {
@@ -462,7 +468,7 @@ export class Api extends APIGroup {
 
     /**
      * Confirm a reservation
-     * 
+     *
      * @param id ID of the reservation to confirm
      */
     public async confirm(id: string): Promise<void> {
@@ -472,7 +478,7 @@ export class Api extends APIGroup {
 
     /**
      * Get the components which are part of the booking
-     * 
+     *
      * @param bookingId Booking ID
      * @returns List of booking components
      */
@@ -482,7 +488,7 @@ export class Api extends APIGroup {
 
     /**
      * Get details of a single component of a booking
-     * 
+     *
      * @param bookingId Booking ID
      * @param componentId Component ID
      * @returns Component Details
@@ -493,7 +499,7 @@ export class Api extends APIGroup {
 
     /**
      * Get the passengers on a booking
-     * 
+     *
      * @param id Booking ID
      * @returns List of passengers
      */
@@ -502,9 +508,9 @@ export class Api extends APIGroup {
     }
 
     /**
-     * 
+     *
      * Add a new note to a reservation
-     * 
+     *
      * @param id Reservation ID
      * @param note Note Data
      * @returns Created Note
@@ -515,7 +521,7 @@ export class Api extends APIGroup {
 
     /**
      * Get Notes for a reservation
-     * 
+     *
      * @param id Booking ID
      * @returns Booking Notes
      */
@@ -525,7 +531,7 @@ export class Api extends APIGroup {
 
     /**
      * Get payments for a reservation
-     * 
+     *
      * @param id Reservation ID
      * @returns Payments
      */

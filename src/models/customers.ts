@@ -43,6 +43,7 @@ export interface CreateCustomerRequest {
     ExternalReference?: string
     TypeId?: number
     Gender?: Gender
+    DateOfBirth?: Date
 }
 
 export type ContactType = "Primary"
