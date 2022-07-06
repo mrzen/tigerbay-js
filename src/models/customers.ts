@@ -42,6 +42,7 @@ export interface CreateCustomerRequest {
     Reference?: string
     ExternalReference?: string
     TypeId?: number
+    Gender?: Gender
 }
 
 export type ContactType = "Primary"
@@ -101,9 +102,9 @@ export class Api extends APIGroup {
 
     /**
      * Perform arbitrary update operations to a customer
-     * 
-     * @param customerId 
-     * @param updates 
+     *
+     * @param customerId
+     * @param updates
      */
     public async update(customerId: number, updates: PatchPayload[]): Promise<void> {
         await this.axios.patch(`/sales/customers/${customerId}`, updates, {
