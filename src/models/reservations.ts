@@ -50,6 +50,15 @@ export interface Reservation extends LinkedObject {
     Id: number
 
     /**
+     * Attention Required
+     *
+     * @default false
+     * @readonly
+     * @since v0.5.0
+     */
+    AttentionRequired: boolean
+
+    /**
      * Booking Reference
      */
     BookingReference: string
