@@ -54,7 +54,7 @@ export interface Reservation extends LinkedObject {
      *
      * @default false
      * @readonly
-     * @since v0.5.0
+     * @since v0.9.5
      */
     AttentionRequired: boolean
 
