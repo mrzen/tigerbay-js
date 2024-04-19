@@ -1,5 +1,5 @@
 import { Cache, Customers, Notes, Payments, Reservations, Tasks, Tours } from './models'
-import Axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
+import Axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, HeadersDefaults, InternalAxiosRequestConfig } from 'axios'
 import { USER_AGENT } from './user_agent'
 import * as Auth from './auth'
 export * as Auth from './auth'
@@ -27,8 +27,9 @@ export class Client {
         this.axios.defaults.baseURL = config.baseUrl.toString()
         this.axios.defaults.timeout = this.config.timeout
         this.axios.defaults.responseType = 'json'
-        this.axios.defaults.paramsSerializer = JSON.stringify
-        this.axios.defaults.headers = { 
+        //this.axios.defaults.paramsSerializer = JSON.stringify
+
+        this.axios.defaults.headers.common = {
             'User-Agent': USER_AGENT,
             'Content-Type': 'application/json',
             'Accept': 'application/json',
@@ -94,7 +95,7 @@ export class Client {
      * @param func Function for request fufillment
      * @returns Handle for interceptor, used with {@link ejectOnRequest}
      */
-    public onRequest(func: (value: AxiosRequestConfig) => AxiosRequestConfig | Promise<AxiosRequestConfig>): number {
+    public onRequest<T>(func: (value: InternalAxiosRequestConfig) => InternalAxiosRequestConfig | Promise<InternalAxiosRequestConfig>): number {
         return this.axios.interceptors.request.use(func)
     }
 

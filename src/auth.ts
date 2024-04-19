@@ -1,4 +1,4 @@
-import Axios, { AxiosRequestConfig } from "axios"
+import Axios, { AxiosHeaders, AxiosRequestConfig, InternalAxiosRequestConfig } from "axios"
 import { USER_AGENT } from "./user_agent"
 import qs from 'qs'
 export interface Response {
@@ -27,37 +27,38 @@ export function Authentication(baseUrl: string, provider: CredentialsProvider) {
     let token: string | undefined = undefined
     let tokenExpires: Date | undefined = undefined
 
-    return async function(req: AxiosRequestConfig): Promise<AxiosRequestConfig> {
+    return async function(req: InternalAxiosRequestConfig<any>):  Promise<InternalAxiosRequestConfig<any>> {
 
+        req.headers ||= new AxiosHeaders()
+
+        // If we have a token that we know isn't expired, use it to make the request.
         if (token && tokenExpires && tokenExpires > new Date() ) {
-            req.headers.Authorization = `bearer ${token}`
+            req.headers.Authorization = `Bearer ${token}`
 
             return req
         }
 
        const credentials = await provider()
 
-       const body: Request = {
-            client_id: credentials.clientId,
-            client_secret: credentials.clientSecret,
-            grant_type: GrantType.CLIENT_CREDENTIALS  
-       }
+       const body = new URLSearchParams()
+       body.append('client_id', credentials.clientId)
+       body.append('client_secret', credentials.clientSecret)
+       body.append('grant_type', GrantType.CLIENT_CREDENTIALS)
+       
 
        const params: AxiosRequestConfig = {}
        params.responseType = 'json'
        params.headers ||= {}
        params.headers['User-Agent'] = USER_AGENT
        params.headers['Content-Type'] = 'application/x-www-form-urlencoded'
-       params.transformRequest = qs.stringify
-
 
        // Perform the token request in the global Axios instance to avoid interceptor recursion
-       const rsp = await Axios.post<Response>(baseUrl + '/auth/web/connect/token', body, params)
+       const rsp = await Axios.post<Response>(baseUrl + '/security/users/authenticate', body, params)
 
        token = rsp.data.access_token
        tokenExpires = new Date( new Date().getTime() + rsp.data.expires_in * 1000 )
 
-       req.headers.Authorization = `bearer ${token}`
+       req.headers.Authorization = `Bearer ${token}`
        return req
     }
 }
