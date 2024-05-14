@@ -78,5 +78,8 @@ export interface Departure {
     MinimumTwinRooms: number
     MinimumTripleRooms: number
     Tags: string[]
+    IsGuaranteed: boolean
+    IsCancelled: boolean
+    Ttl: number
 }
 
