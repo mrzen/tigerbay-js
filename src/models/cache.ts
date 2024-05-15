@@ -1,6 +1,6 @@
 import qs from "qs";
 import { APIGroup } from "./common";
-import { AccommodationUnit, Inventory } from "./tours";
+import { AccommodationUnit, DeparturePricing, Flight, Inventory } from "./tours";
 
 export default class CacheApi extends APIGroup {
     public async search(params: CacheSearchRequest): Promise<Departure[]> {
@@ -56,6 +56,43 @@ export interface DeparturePrice {
     CurrencyCode: string
 }
 
+export interface FlightStop {
+    SetupId: number
+    Name: string
+    Reference: string
+    Type: string
+    IsDomestic: boolean
+}
+
+export interface Flight {
+    SetupId: number
+    InventorySummary: Inventory
+    PriceSummary: { AdultPrice: DeparturePrice }
+    DepartureAirport: FlightStop
+    ArrivalAirport: FlightStop
+    DepartureDateTime: string
+    ArrivalDateTime: string
+    FlightNumber: string
+    IsEndPoint: boolean
+    TransportMode: string
+    CabinClass: string
+    IsOutOfRange: boolean
+    Source: string
+}
+
+export interface FlightGroup {
+    SetupId: number
+    IsDefault: boolean
+    IsMandatory: boolean 
+    IsInternal: boolean
+    IsDomestic: boolean
+    MoreSeatsSources: never[]
+    PriceSummary: {
+        AdultPrice: DeparturePrice
+    }
+    Flights: Flight[]
+}
+
 export interface Departure {
     Id: string
     RefreshId: string
@@ -81,5 +118,6 @@ export interface Departure {
     IsGuaranteed: boolean
     IsCancelled: boolean
     Ttl: number
+    FlightGroups: FlightGroup[]
 }
 

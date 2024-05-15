@@ -221,10 +221,20 @@ export interface FlightCarrier {
 }
 
 export interface Inventory {
+    Allocation: number
     Available: number
+    Confirmed: number
+    Optioned: number
+    FreeSold: number
+    Requested: number
+    IsAllocationOnRequest: boolean
     IsOnRequest: boolean
-    IsFreeSell: boolean
+    IsSupplierStopSale: boolean
+    IsCompanyStopSale: boolean
+    IsReleaseStopSale: boolean
     IsClosed: boolean
+    IsFreeSell: boolean
+    IsBookable: boolean
 }
 
 
