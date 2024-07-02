@@ -476,6 +476,17 @@ export class Api extends APIGroup {
     }
 
     /**
+     * Accept terms and conditions for a booking.
+     * 
+     * @param id Booking ID
+     * @returns
+     */
+    public async acceptConditions(id: string): Promise<void> {
+        await this.axios.put(`/sales/reservations/${id}/conditions`, {action: 'accept'})
+        return
+    }
+
+    /**
      * Confirm a reservation
      *
      * @param id ID of the reservation to confirm

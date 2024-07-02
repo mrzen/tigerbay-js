@@ -1,6 +1,6 @@
 import qs from "qs";
 import { APIGroup } from "./common";
-import { AccommodationUnit, DeparturePricing, Flight, Inventory } from "./tours";
+import { AccommodationUnit, Inventory } from "./tours";
 
 export default class CacheApi extends APIGroup {
     public async search(params: CacheSearchRequest): Promise<Departure[]> {
