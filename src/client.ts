@@ -2,6 +2,7 @@ import { Cache, Customers, Notes, Payments, Reservations, Tasks, Tours } from '.
 import Axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, HeadersDefaults, InternalAxiosRequestConfig } from 'axios'
 import { USER_AGENT } from './user_agent'
 import * as Auth from './auth'
+import SetupAPI from './models/setup'
 export * as Auth from './auth'
 export * as Models from './models'
 
@@ -87,6 +88,13 @@ export class Client {
      */
     public get cache(): Cache.default {
         return new Cache.default(this.axios)
+    }
+
+    /**
+     * System Configuration/Setup APIs
+     */
+    public get setup(): SetupAPI {
+        return new SetupAPI(this.axios)
     }
 
     /**

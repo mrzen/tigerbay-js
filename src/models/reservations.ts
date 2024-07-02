@@ -21,6 +21,18 @@ export interface FindReservationResponse extends LinkedObject {
     OwnerUserId: number
 }
 
+export interface SetSourceRequest {
+    SourceId: number
+    SubsourceId: number
+    Comment?: string
+    FreeText?: ''
+}
+
+export interface SetSourceResponse extends SetSourceRequest {
+    Id: number
+    DateAdded: string
+}
+
 /**
  * API Request Parameters to create a new {@link Reservation}
  */
@@ -473,6 +485,18 @@ export class Api extends APIGroup {
      */
     public async tasks(id: string): Promise<Array<Tasks.Task>> {
         return (await this.axios.get<Array<Tasks.Task>>(`/sales/reservations/${id}/tasks`)).data
+    }
+
+    /**
+     * Set the sources for a booking
+     * 
+     * @param id Reservation ID
+     * @param params Set Source Properties
+     * @returns 
+     */
+    public async setSource(id: string, params: SetSourceRequest): Promise<SetSourceResponse> {
+        params.FreeText = '' // This parameter is required but must always be empty.
+        return (await this.axios.post<SetSourceResponse>(`/sales/reservations/${id}/sources`)).data
     }
 
     /**
