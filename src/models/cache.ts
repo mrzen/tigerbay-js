@@ -119,7 +119,7 @@ export interface Departure {
     IsCancelled: boolean
     Ttl: number
     FlightGroups: FlightGroup[]
-    LinkedCustomer: DepartureLinkedCutomer[]
+    LinkedCustomers: DepartureLinkedCutomer[]
 }
 
 export interface DepartureLinkedCutomer {
