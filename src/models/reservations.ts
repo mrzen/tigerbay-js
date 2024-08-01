@@ -496,7 +496,7 @@ export class Api extends APIGroup {
      */
     public async setSource(id: string, params: SetSourceRequest): Promise<SetSourceResponse> {
         params.FreeText = '' // This parameter is required but must always be empty.
-        return (await this.axios.post<SetSourceResponse>(`/sales/reservations/${id}/sources`)).data
+        return (await this.axios.post<SetSourceResponse>(`/sales/reservations/${id}/sources`, params)).data
     }
 
     /**
