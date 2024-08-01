@@ -85,7 +85,7 @@ export class Api extends APIGroup {
 
         const query = qs.stringify({search: params})
 
-        return (await this.axios.get<Array<Customer>>(`/sales/customers/search?${query}`)).data
+        return (await this.axios.get<Array<Customer>>(`/sales/customers?${query}`)).data
     }
 
     public async find(id: number): Promise<Customer> {
