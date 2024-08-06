@@ -238,6 +238,7 @@ export interface CurrencyDetails {
 
 export interface BookingDocument extends LinkedObject {
     Id: number
+    Template: string
     ExternalURI: string
     CreatedByUserId: number
     OwnerUserId: number
