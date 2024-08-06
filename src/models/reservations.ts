@@ -236,6 +236,13 @@ export interface CurrencyDetails {
     FullName: string
 }
 
+export interface BookingDocument extends LinkedObject {
+    Id: number
+    ExternalURI: string
+    CreatedByUserId: number
+    OwnerUserId: number
+}
+
 /**
  * Passenger type
  */
@@ -581,5 +588,9 @@ export class Api extends APIGroup {
      */
     public async payments(id: number): Promise<Payment[]> {
         return (await this.axios.get<Payment[]>(`/sales/reservations/${id}/payments`)).data
+    }
+
+    public async documents(id: number): Promise<BookingDocument[]> {
+        return (await this.axios.get<BookingDocument[]>(`/sales/reservations/${id}/documents`)).data
     }
 }
