@@ -8,6 +8,11 @@ import { Price } from "./reservations";
 export interface CreatePaymentRequest {
     Amount: PaymentAmount
 
+    AuthorizationCode?: string
+
+    Last4Digits?: string
+    Status?: "Completed" | "Pending" | "Failed" | "Authorised"
+
     /**
      * An optional payment reference
      */
@@ -16,7 +21,7 @@ export interface CreatePaymentRequest {
     /**
      * URL to return the user to after making the payment
      */
-    ReturnUrl: string
+    ReturnUrl?: string
 
     /**
      * ID of the customer contact to associate the payment with
@@ -27,6 +32,8 @@ export interface CreatePaymentRequest {
      * Payment Type ID
      */
     SetupPaymentTypeId: number
+
+    ProviderData: Array<{key: string, value: string}>
 }
 
 export interface PaymentAmount {

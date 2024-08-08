@@ -524,8 +524,18 @@ export class Api extends APIGroup {
      * @param id ID of the reservation to confirm
      */
     public async confirm(id: string): Promise<void> {
-        const params = {ReservationId: id}
+        const params = { ReservationId: id }
         await this.axios.post(`/sales/reservations/confirmations`, params)
+    }
+
+    /**
+     * Convert a reservation to an Option
+     * 
+     * @param id ID of the reservation to option
+     */
+    public async createOption(id: string|number): Promise<void> {
+        const params = { ReservationId: id }
+        await this.axios.post('/sales/reservations/options', params)
     }
 
     /**
