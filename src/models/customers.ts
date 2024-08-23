@@ -1,5 +1,7 @@
 import qs from "qs";
 import { APIGroup, LinkedObject, PatchPayload } from "./common";
+import { AxiosInstance } from "axios";
+import { PassengerAPIS } from "./passengers";
 
 export interface CustomerSearchRequest {
     username?: string
@@ -46,7 +48,7 @@ export interface CreateCustomerRequest {
     DateOfBirth?: Date
 }
 
-export type ContactType = "Primary"
+export type ContactType = "Primary" | "Emergency" | "Document Addition" | "Next of Kin" | "Other"
 
 export interface CustomerContact {
     Title: string
@@ -127,5 +129,45 @@ export class Api extends APIGroup {
 
     public async createContact(customerId: number, contact: CustomerContact): Promise<CustomerContactResponse> {
         return (await this.axios.post<CustomerContactResponse>(`/sales/customers/${customerId}/contacts`, contact)).data
+    }
+}
+
+export class CustomerAPI extends APIGroup {
+    private id: number;
+
+    constructor(axios: AxiosInstance, id: number) {
+        super(axios)
+        this.id = id
+    }
+
+    public get path(): string {
+        return `/sales/customers/${this.id}`
+    }
+
+    /**
+     * List contact addresses for a customer
+     * @param customerId
+     */
+    public async contacts(): Promise<CustomerContactResponse[]> {
+        return (await this.axios.get<CustomerContactResponse[]>(`${this.path}/contacts`)).data
+    }
+
+    /**
+     * Get APIS details for a customer
+     */
+    public async getApis(): Promise<PassengerAPIS> {
+        return (await this.axios.get(`${this.path}/apis`)).data
+    }
+
+    /**
+     * Update the customer APIS details.
+     * Merges the given APIs details with the existing ones.
+     * Any properties in `updates` which are null or undefined will be unchanged.
+     */
+    public async updateApis(updates: Partial<PassengerAPIS>): Promise<void> {
+        const existing = await this.getApis()
+        const payload = { ...updates, ...existing }
+
+        await this.axios.put(`${this.path}/apis`, payload)
     }
 }

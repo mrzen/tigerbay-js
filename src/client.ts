@@ -76,6 +76,10 @@ export class Client {
         return new Customers.Api(this.axios)
     }
 
+    public customer(id: number): Customers.CustomerAPI {
+        return new Customers.CustomerAPI(this.axios, id)
+    }
+
     /**
      * Access payment related API actions
      */

@@ -3,6 +3,7 @@ import { Tasks } from "../models";
 import { APIGroup, LinkedObject, PassengerAssignment, PatchPayload } from "./common";
 import { Note, NoteType } from "./notes";
 import { Payment } from "./payments";
+import { PassengerAPI } from "./passengers";
 
 
 export interface FindReservationRequest {
@@ -567,6 +568,10 @@ export class Api extends APIGroup {
      */
     public async passengers(id: number): Promise<Passenger[]> {
         return (await this.axios.get<Passenger[]>(`/sales/reservations/${id}/passengers`)).data
+    }
+
+    public passenger(reservation: number, passenger: number): PassengerAPI {
+        return new PassengerAPI(this.axios, reservation, passenger)
     }
 
     /**
