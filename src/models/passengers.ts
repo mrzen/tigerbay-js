@@ -18,7 +18,27 @@ export class PassengerAPI extends APIGroup {
 
 
     public async contacts(): Promise<CustomerContact[]> {
-        return (await this.axios.get(`${this.path}/Contacts`))
+        return (await this.axios.get(`${this.path}/Contacts`)).data
+    }
+
+    public async addContact(contact: Omit<CustomerContact, 'Id'>): Promise<CustomerContact> {
+        return (await this.axios.post(`${this.path}/contacts`, contact)).data
+    }
+
+    public async updateContact(id: number, contact: Omit<CustomerContact, 'Id'>): Promise<CustomerContact> {
+        return (await this.axios.put(`${this.path}/contacts/${id}`, contact)).data
+    }
+
+    public async insurances(): Promise<Insurance[]> {
+        return (await this.axios.get(`${this.path}/insurances`)).data
+    }
+
+    public async addInsurance(insurance: Omit<Insurance, 'Id'>): Promise<Insurance> {
+        return (await this.axios.post(`${this.path}/insurances`, insurance)).data
+    }
+
+    public async updateInsurance(id: number, insurance: Omit<Insurance, 'Id'>): Promise<Insurance> {
+        return (await this.axios.put(`${this.path}/insurances/${id}`, insurance)).data
     }
 
     /**
@@ -52,4 +72,20 @@ export interface PassengerAPIS {
     ExpiryDate: string;
     DateOfBirth: string;
     PlaceOfBirth: string;
+}
+
+export interface Insurance {
+    Id: number;
+    CompanyName: string;
+    CompanyNumber: string;
+    NextOfKin: string;
+    NextOfKinRelationship: string;
+    EmergencyNumber: string;
+    PolicyNumber: string;
+    Description: string;
+    StartDate: string | Date;
+    EndDate: string | Date;
+    CreatedDate: string | Date;
+    TermsAccepted: boolean;
+    IsArchived: boolean;
 }
