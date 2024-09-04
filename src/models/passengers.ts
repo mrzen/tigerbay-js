@@ -1,5 +1,5 @@
 import { AxiosInstance } from "axios";
-import { APIGroup } from "./common";
+import { APIGroup, PatchPayload } from "./common";
 import { CustomerContact } from "./customers";
 
 export class PassengerAPI extends APIGroup {
@@ -16,17 +16,43 @@ export class PassengerAPI extends APIGroup {
         return (await this.axios.get(`${this.path}/Apis`)).data
     }
 
-
+    /**
+     * List customer contacts
+     * 
+     * @returns List of passenger contacts
+     */
     public async contacts(): Promise<CustomerContact[]> {
         return (await this.axios.get(`${this.path}/Contacts`)).data
     }
 
+    /**
+     * Add a new contact to a passenger
+     *  
+     * @param contact New contact details
+     * @returns New contact
+     */
     public async addContact(contact: Omit<CustomerContact, 'Id'>): Promise<CustomerContact> {
         return (await this.axios.post(`${this.path}/contacts`, contact)).data
     }
 
-    public async updateContact(id: number, contact: Omit<CustomerContact, 'Id'>): Promise<CustomerContact> {
-        return (await this.axios.put(`${this.path}/contacts/${id}`, contact)).data
+    /**
+     * Delete a contact from a passenger
+     * 
+     * @param id ID of the contact to delete
+     */
+    public async deleteContact(id: number): Promise<void> {
+        return (await this.axios.delete(`${this.path}/contacts/${id}`))
+    }
+
+    /**
+     * Update a passenger contact
+     * 
+     * @param id ID of the contact to update
+     * @param updates List of updates to perform on the contact
+     * @returns 
+     */
+    public async updateContact(id: number, updates: PatchPayload[]): Promise<CustomerContact> {
+        return (await this.axios.patch(`${this.path}/contacts/${id}`, updates)).data
     }
 
     public async insurances(): Promise<Insurance[]> {
@@ -37,18 +63,18 @@ export class PassengerAPI extends APIGroup {
         return (await this.axios.post(`${this.path}/insurances`, insurance)).data
     }
 
-    public async updateInsurance(id: number, insurance: Omit<Insurance, 'Id'>): Promise<Insurance> {
-        return (await this.axios.put(`${this.path}/insurances/${id}`, insurance)).data
+    public async deleteInsurance(id: number): Promise<void> {
+        return (await this.axios.delete(`${this.path}/insurances/${id}`))
     }
 
     /**
      * Update the passenger APIS details.
      * Merges the given APIs details with the existing ones.
-     * Any properties in `updates` which are null or undefined will be unchanged.
+     * Any properties in `updates` which are undefined will be unchanged.
      */
     public async updateApis(updates: Partial<PassengerAPIS>): Promise<void> {
         const existing = await this.getApis()
-        const payload = { ...updates, ...existing }
+        const payload = { ...existing, ...updates }
 
         await this.axios.put(`${this.path}/apis`, payload)
     }
@@ -57,7 +83,7 @@ export class PassengerAPI extends APIGroup {
      * Get the path to the current passenger resource.
      */
     public get path(): string {
-        return `/reservations/${this.booking}/passengers/${this.id}`
+        return `/sales/reservations/${this.booking}/passengers/${this.id}`
     }
 }
 
