@@ -59,7 +59,7 @@ export class PassengerAPI extends APIGroup {
         return (await this.axios.get(`${this.path}/insurances`)).data
     }
 
-    public async addInsurance(insurance: Omit<Insurance, 'Id'>): Promise<Insurance> {
+    public async addInsurance(insurance: Omit<Omit<Insurance, 'Id'>, 'CreatedDate'>): Promise<Insurance> {
         return (await this.axios.post(`${this.path}/insurances`, insurance)).data
     }
 
@@ -110,7 +110,7 @@ export interface Insurance {
     PolicyNumber: string;
     Description: string;
     StartDate: string | Date;
-    EndDate: string | Date;
+    ExpiryDate: string | Date;
     CreatedDate: string | Date;
     TermsAccepted: boolean;
     IsArchived: boolean;
