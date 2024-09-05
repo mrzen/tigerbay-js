@@ -570,6 +570,13 @@ export class Api extends APIGroup {
         return (await this.axios.get<Passenger[]>(`/sales/reservations/${id}/passengers`)).data
     }
 
+    /**
+     * Get an API object for a specific passenger
+     * 
+     * @param reservation Booking ID
+     * @param passenger Passenger ID
+     * @returns 
+     */
     public passenger(reservation: number, passenger: number): PassengerAPI {
         return new PassengerAPI(this.axios, reservation, passenger)
     }
@@ -594,6 +601,17 @@ export class Api extends APIGroup {
      */
     public async notes(id: number): Promise<Note[]> {
         return (await this.axios.get<Note[]>(`/sales/reservations/${id}/notes`)).data
+    }
+
+    /**
+     * Delete a note based on booking and note ID.
+     * 
+     * @param bookingId Booking ID
+     * @param noteId Note ID
+     * @returns 
+    */
+    public async deleteNote(bookingId: number, noteId: number): Promise<void> {
+        return (await this.axios.delete(`/sales/reservations/${bookingId}/notes/${noteId}`)).data
     }
 
     /**
