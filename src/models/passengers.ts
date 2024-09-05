@@ -1,6 +1,8 @@
 import { AxiosInstance } from "axios";
 import { APIGroup, PatchPayload } from "./common";
 import { CustomerContact } from "./customers";
+import { Note } from "./notes";
+import { AddNoteRequest } from "./reservations";
 
 export class PassengerAPI extends APIGroup {
     private booking: number;
@@ -14,6 +16,13 @@ export class PassengerAPI extends APIGroup {
 
     public async getApis(): Promise<PassengerAPIS> {
         return (await this.axios.get(`${this.path}/Apis`)).data
+    }
+    
+    /**
+     * Update the passenger APIS details.
+     */
+    public async updateApis(updates: PassengerAPIS): Promise<void> {
+        await this.axios.put(`${this.path}/apis`, updates)
     }
 
     /**
@@ -67,16 +76,17 @@ export class PassengerAPI extends APIGroup {
         return (await this.axios.delete(`${this.path}/insurances/${id}`))
     }
 
-    /**
-     * Update the passenger APIS details.
-     * Merges the given APIs details with the existing ones.
-     * Any properties in `updates` which are undefined will be unchanged.
-     */
-    public async updateApis(updates: Partial<PassengerAPIS>): Promise<void> {
-        const existing = await this.getApis()
-        const payload = { ...existing, ...updates }
 
-        await this.axios.put(`${this.path}/apis`, payload)
+    public async notes(): Promise<Note[]> {
+        return (await this.axios.get(`${this.path}/notes`)).data
+    }
+
+    public async addNote(note: AddNoteRequest): Promise<Note> {
+        return (await this.axios.post(`${this.path}/notes`, note)).data
+    }
+
+    public async deleteNote(id: number): Promise<void> {
+        return (await this.axios.delete(`${this.path}/notes/${id}`))
     }
 
     /**
