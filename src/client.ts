@@ -3,6 +3,7 @@ import Axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, HeadersDefault
 import { USER_AGENT } from './user_agent'
 import * as Auth from './auth'
 import SetupAPI from './models/setup'
+import { NoteManager } from './models/notes'
 export * as Auth from './auth'
 export * as Models from './models'
 
@@ -99,6 +100,10 @@ export class Client {
      */
     public get setup(): SetupAPI {
         return new SetupAPI(this.axios)
+    }
+
+    public get noteManager(): NoteManager {
+        return new NoteManager(this.axios)
     }
 
     /**

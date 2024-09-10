@@ -1,4 +1,4 @@
-import { AxiosError } from "axios";
+import { AxiosError, AxiosInstance, isAxiosError } from "axios";
 import { APIGroup, LinkedObject } from "./common";
 
 export type NoteType = "SpecialRequest" | "Amendment" | "Diet" | "Medical" | "CustomerFeedback" 
@@ -9,17 +9,18 @@ export type NoteType = "SpecialRequest" | "Amendment" | "Diet" | "Medical" | "Cu
                      | "SailingQualification" | "Representative" | "CreditControl" 
                      | "PassportAndVisaInformation" | "ImportantInformation" | "Recommended"
 
-export interface Note extends LinkedObject {
-    Id: number
-    Type: NoteType
-    Title: string
-    Text: string
-}
 
 export interface NotePayload {
+    BundleReference: string
     Type: NoteType
     Title: string
     Text: string
+    ValidDocuments?: string[]
+    IsPredefinedNote?: boolean
+}
+
+export interface Note extends NotePayload, LinkedObject {
+    Id: number
 }
 
 export class Api extends APIGroup {
@@ -47,9 +48,7 @@ export class Api extends APIGroup {
         try {
             await this.axios.post(`${selfLink.Href}/notes`, note)
         } catch(error) {
-            const err = error as AxiosError
-
-            if (err.response?.status === 404) {
+            if (isAxiosError(error) && error.response?.status === 404) {
                 throw new Error("Specified resource does not support notes")
             }
         }
@@ -72,9 +71,7 @@ export class Api extends APIGroup {
         try {
             notes = (await this.axios.get<Array<Note>>(`${selfLink[0]}/notes`)).data
         } catch(error) {
-            const err: AxiosError = error
-
-            if (err.response?.status === 404) {
+            if (isAxiosError(error) && error.response?.status === 404) {
                 throw new Error("Specified resource does not support notes")
             }
         }
@@ -82,4 +79,22 @@ export class Api extends APIGroup {
         return notes
     }
     
+}
+
+export class NoteManager extends APIGroup {
+    public async list(resourceReference: string): Promise<Note[]> {
+        return (await this.axios.get(`/notemanager/notes`, { params: { bundleReference: resourceReference } })).data
+    }
+
+    public async add(note: NotePayload): Promise<Note> {
+        return (await this.axios.post(`/notemanager/notes`, note)).data
+    }
+
+    public async get(id: number): Promise<Note | null> {
+        return (await this.axios.get(`/notemanager/notes/${id}`)).data
+    }
+
+    public async remove(id: number): Promise<void> {
+        await this.axios.delete(`/notemanager/notes/${id}`)
+    }
 }
