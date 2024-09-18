@@ -106,6 +106,11 @@ export class Client {
         return new NoteManager(this.axios)
     }
 
+
+    public async healthcheck(): Promise<HealthCheckResponse> {
+        return (await this.axios.get('/healthcheck')).data
+    }
+
     /**
      * Add a new interceptor before a request is sent
      * 
@@ -173,3 +178,11 @@ export interface ClientConfig {
     credentials: Auth.CredentialsProvider
 }
 
+export interface HealthCheckResponse {
+    [key: string]: {
+        Name: string
+        IsHealthy: boolean
+        Message: string
+        Duration: string
+    }    
+}
