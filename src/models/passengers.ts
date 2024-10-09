@@ -1,5 +1,5 @@
 import { AxiosInstance } from "axios";
-import { APIGroup, PatchPayload } from "./common";
+import { APIGroup, LinkedObject, PatchPayload } from "./common";
 import { CustomerContact } from "./customers";
 import { Note } from "./notes";
 import { AddNoteRequest } from "./reservations";
@@ -76,7 +76,6 @@ export class PassengerAPI extends APIGroup {
         return (await this.axios.delete(`${this.path}/insurances/${id}`))
     }
 
-
     public async notes(): Promise<Note[]> {
         return (await this.axios.get(`${this.path}/notes`)).data
     }
@@ -89,6 +88,10 @@ export class PassengerAPI extends APIGroup {
         return (await this.axios.delete(`${this.path}/notes/${id}`))
     }
 
+    public async details(): Promise<Passenger> {
+        return (await this.axios.get(this.path)).data
+    }
+
     /**
      * Get the path to the current passenger resource.
      */
@@ -97,6 +100,21 @@ export class PassengerAPI extends APIGroup {
     }
 }
 
+export interface Passenger extends LinkedObject {
+    Id: number
+    BundleReference: string
+    ReservationId: number
+    CustomerId?: number
+    Type: string
+    Title: string
+    Forename: string
+    MiddleName: string
+    Surname: string
+    Gender: string
+    IsLead: boolean
+    DateOfBirth: string
+    PlaceOfBirth: string | null
+}
 
 export interface PassengerAPIS {
     DocumentType: string;
