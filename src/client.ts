@@ -4,6 +4,7 @@ import { USER_AGENT } from './user_agent'
 import * as Auth from './auth'
 import SetupAPI from './models/setup'
 import { NoteManager } from './models/notes'
+import ContentAPI from './models/content'
 export * as Auth from './auth'
 export * as Models from './models'
 
@@ -106,6 +107,13 @@ export class Client {
         return new NoteManager(this.axios)
     }
 
+    public content(bundleReference: string): ContentAPI {
+        return new ContentAPI(this.axios, bundleReference)
+    }
+
+    public async file(id: number): Promise<AxiosResponse> {
+        return this.axios.get(`/cms/files/${id}/download`)
+    }
 
     public async healthcheck(): Promise<HealthCheckResponse> {
         return (await this.axios.get('/healthcheck')).data
