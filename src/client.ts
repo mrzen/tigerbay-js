@@ -112,7 +112,8 @@ export class Client {
     }
 
     public async file(id: number): Promise<AxiosResponse> {
-        return this.axios.get(`/cms/files/${id}/download`)
+        const { Url } = (await this.axios.get(`/cms/files/${id}`)).data
+        return this.axios.get('/..' + Url)
     }
 
     public async healthcheck(): Promise<HealthCheckResponse> {
