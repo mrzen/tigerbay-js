@@ -117,6 +117,7 @@ export class Client {
             headers:{
                 Accept: '*/*',
             },
+            responseType: 'stream',
         })
     }
 
