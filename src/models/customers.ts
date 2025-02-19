@@ -48,7 +48,7 @@ export interface CreateCustomerRequest {
     DateOfBirth?: Date
 }
 
-export type ContactType = "Primary" | "Emergency" | "Document Addition" | "Next of Kin" | "Other"
+export type ContactType = "Primary" | "Emergency" | "DocumenAddition" | "Next of Kin" | "Other"
 
 export interface CustomerContact {
     Title: string
