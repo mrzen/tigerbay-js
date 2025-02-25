@@ -13,6 +13,7 @@ export interface CreatePaymentRequest {
     Amount?: PaymentAmount
     AuthorisationCode?: string
     TransactionReference?: string
+    Reference?: string
     Token?: string
     Last4Digits?: string
     Status?: PaymentStatus
