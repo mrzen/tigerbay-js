@@ -139,6 +139,13 @@ export interface Extra {
     PriceSummary: {
         AdultPrice: DeparturePrice
     }
+    Categories: Category[]
+}
+
+export interface Category {
+    Name: string
+    Group: string
+    Value: string
 }
 
 export interface Location {
