@@ -6,7 +6,7 @@ export class Api extends APIGroup {
 
     /**
      * Search for available tour departures based on a reservation
-     * 
+     *
      * @param params Search Parameters
      */
     public async search(params: TourSearchRequest): Promise<TourSearchResponse> {
@@ -17,17 +17,17 @@ export class Api extends APIGroup {
 
     /**
      * Get the results for a search
-     * 
+     *
      * @param searchId ID of the result set, created with {@link search}
      */
     public async departures(searchId: string): Promise<Array<Departure>> {
         const rsp = await this.axios.get<Array<Departure>>(`/toursSearch/searches/${searchId}/tourDepartures`)
         return rsp.data
     }
-    
+
     /**
      * Get the flight options for a departure
-     * 
+     *
      * @param searchId ID of the result set, created with {@link search}
      * @param resultId ID of the result item, found with {@link departures}
      */
@@ -38,7 +38,7 @@ export class Api extends APIGroup {
 
     /**
      * Get accommodation
-     * 
+     *
      * @param searchId ID of the result set, created with {@link search}
      * @param resultId ID of the result item, found with {@link departures}
      */
@@ -48,7 +48,7 @@ export class Api extends APIGroup {
 
     /**
      * Get tour extras
-     * 
+     *
      * @param searchId ID of the result set created with {@link search}
      * @param resultId Id of the result item found with {@link departures}
      */
@@ -88,7 +88,7 @@ export interface GuideTourPricing {
     WasPricePerPerson: Price
     NowPricePerPerson: Price
     Promos: Array<String>
-    PromosTotalPerPerson: Price 
+    PromosTotalPerPerson: Price
 }
 
 export interface BoardBasis {
@@ -104,6 +104,7 @@ export interface Accommodation extends LinkedObject {
     Reference: string
     Name: string
     Type: string
+    Description: string
 }
 
 export interface Occupancy {
@@ -204,7 +205,7 @@ export interface FlightLeg extends LinkedObject {
     SetupId: number
     DepartureDatetime: Date
     DepartureAirport: string
-    ArrivalAirport: string 
+    ArrivalAirport: string
     ArrivalDateTime: Date
     TransportMode: TransportMode
     Seat: string

@@ -120,6 +120,49 @@ export interface Departure {
     Ttl: number
     FlightGroups: FlightGroup[]
     LinkedCustomers: DepartureLinkedCutomer[]
+    Extras: Extra[] | null
+    Locations: Location[] | null
+    PerPersonSingleTravellerTotalDiscount: DeparturePrice
+    PerPersonGroupTravellerTotalDiscount: DeparturePrice
+    SingleTravellerPromos: Promotion[]
+    GroupTravellerPromos: Promotion[]
+}
+
+export interface Extra {
+    InventorySummary: Inventory
+    IsDefault: boolean
+    IsMandatory: boolean
+    IsSpecial: boolean
+    Name: string
+    Reference: string
+    SetupId: number
+    PriceSummary: {
+        AdultPrice: DeparturePrice
+    }
+    Categories: Category[]
+}
+
+export interface Category {
+    Name: string
+    Group: string
+    Value: string
+}
+
+export interface Location {
+    SetupId: number
+    Name: string
+    Reference: string
+    Type: string
+    IsDomestic: boolean
+}
+
+export interface Promotion {
+    Name: string
+    Description: string
+    SalesChannel: string
+    PriceSummary: {
+        AdultPrice: DeparturePrice
+    }
 }
 
 export interface DepartureLinkedCutomer {
