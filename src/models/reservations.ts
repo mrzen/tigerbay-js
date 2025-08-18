@@ -410,6 +410,18 @@ export class Api extends APIGroup {
         return rsp.data
     }
 
+    /**
+     * Checks promotions associated with a specific search ID, result ID, and combination ID.
+     *
+     * @param {string} searchId - The unique identifier of the search.
+     * @param {string} resultId - The unique identifier of the search result.
+     * @param {string} combinationId - The unique identifier of the combination.
+     * @return {Promise<Record<string, any>>} A promise that resolves to an object containing promotion details.
+     */
+    public async checkPromo(searchId: string, resultId: string, combinationId: string): Promise<Record<string, any>> {
+        const rsp = await this.axios.post(`/toursSearch/searches/${searchId}/tourDepartures/${resultId}/combinations/${combinationId}/promos`)
+        return rsp.data
+    }
 
     /**
      * Add a service component to a reservation
@@ -428,6 +440,27 @@ export class Api extends APIGroup {
 
         try {
             const rsp = await this.axios.post(`/sales/reservations/${reservationId}/components`, req)
+        } catch(err) {
+            console.error(err)
+        }
+
+        return true
+    }
+
+    /**
+     * Adds a promotional code to a reservation.
+     *
+     * @param {string | number} reservationId - The unique identifier of the reservation.
+     * @param {string} promoCode - The promotional code to be added.
+     * @return {Promise<boolean>} A promise that resolves to true if the promotional code is added successfully.
+     */
+    public async addPromo(reservationId: string | number, promoCode: string): Promise<boolean> {
+        const req = {
+            Code: promoCode,
+        }
+
+        try {
+            const rsp = await this.axios.post(`/sales/reservations/${reservationId}/promotionalCodes`, req)
         } catch(err) {
             console.error(err)
         }
