@@ -62,7 +62,7 @@ export class Api extends APIGroup {
      * @param searchId ID of the result set, created with {@link search}
      * @param resultId ID of the result item, found with {@link departures}
      */
-    public async promos(searchId: string, resultId: string): Promise<Array<string>> {
+    public async promotions(searchId: string, resultId: string): Promise<Array<string>> {
         const rsp = await this.axios.get<Array<string>>(`/toursSearch/searches/${searchId}/tourDepartures/${resultId}/promos`)
         return rsp.data
     }

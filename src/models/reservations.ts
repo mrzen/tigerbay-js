@@ -418,7 +418,7 @@ export class Api extends APIGroup {
      * @param {string} combinationId - The unique identifier of the combination.
      * @return {Promise<Record<string, any>>} A promise that resolves to an object containing promotion details.
      */
-    public async checkPromo(searchId: string, resultId: string, combinationId: string): Promise<Record<string, any>> {
+    public async promotions(searchId: string, resultId: string, combinationId: string): Promise<Record<string, any>> {
         const rsp = await this.axios.post(`/toursSearch/searches/${searchId}/tourDepartures/${resultId}/combinations/${combinationId}/promos`)
         return rsp.data
     }
@@ -454,7 +454,7 @@ export class Api extends APIGroup {
      * @param {string} promoCode - The promotional code to be added.
      * @return {Promise<boolean>} A promise that resolves to true if the promotional code is added successfully.
      */
-    public async addPromo(reservationId: string | number, promoCode: string): Promise<boolean> {
+    public async addPromotion(reservationId: string | number, promoCode: string): Promise<boolean> {
         const req = {
             Code: promoCode,
         }
