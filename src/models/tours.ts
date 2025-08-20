@@ -55,6 +55,17 @@ export class Api extends APIGroup {
     public async extras(searchId: string, resultId: string): Promise<TourExtra[]> {
         return (await this.axios.get<TourExtra[]>(`/toursSearch/searches/${searchId}/tourDepartures/${resultId}/extras`)).data
     }
+
+    /**
+     * Get the promo options for a departure
+     *
+     * @param searchId ID of the result set, created with {@link search}
+     * @param resultId ID of the result item, found with {@link departures}
+     */
+    public async promotions(searchId: string, resultId: string): Promise<Array<string>> {
+        const rsp = await this.axios.get<Array<string>>(`/toursSearch/searches/${searchId}/tourDepartures/${resultId}/promos`)
+        return rsp.data
+    }
 }
 
 export interface AccommodationUnit extends LinkedObject {
