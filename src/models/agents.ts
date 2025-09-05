@@ -26,8 +26,8 @@ export class AgentApi extends APIGroup {
   /**
    * Get agents
    */
-  public async agents(): Promise<Array<Agent>> {
-    return (await this.axios.get<Array<Agent>>('/sales/agents')).data
+  public async agents(): Promise<Agent[]> {
+    return (await this.axios.get<Agent[]>('/sales/agents')).data
   }
 
   /**
@@ -40,7 +40,7 @@ export class AgentApi extends APIGroup {
   /**
    * Get agent staff members
    */
-  public async agentStaff(id: number): Promise<AgentStaff> {
-    return (await this.axios.get<AgentStaff>(`/sales/agents/${id}/staff`)).data
+  public async agentStaff(id: number): Promise<AgentStaff[]> {
+    return (await this.axios.get<AgentStaff[]>(`/sales/agents/${id}/staff`)).data
   }
 }

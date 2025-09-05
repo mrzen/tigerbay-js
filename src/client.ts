@@ -82,6 +82,10 @@ export class Client {
         return new Customers.CustomerAPI(this.axios, id)
     }
 
+    public get agents(): Agents.AgentApi {
+        return new Agents.AgentApi(this.axios)
+    }
+
     /**
      * Access payment related API actions
      */
