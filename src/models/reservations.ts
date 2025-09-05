@@ -4,7 +4,7 @@ import { APIGroup, LinkedObject, PassengerAssignment, PatchPayload } from "./com
 import { Note, NoteType } from "./notes";
 import { Payment } from "./payments";
 import { PassengerAPI } from "./passengers";
-
+import { Agent, AgentStaff } from "./agents";
 
 export interface FindReservationRequest {
     bookingReference: string | null
@@ -466,6 +466,38 @@ export class Api extends APIGroup {
         }
 
         return true
+    }
+
+    /**
+     * Assigns an agent to a reservation by making a POST request to the specified endpoint.
+     *
+     * @param {string | number} reservationId - The unique identifier of the reservation to which the agent will be assigned.
+     * @param {string} id - The unique identifier of the agent to be assigned.
+     * @return {Promise<Agent>} A promise that resolves to the assigned agent's data.
+     */
+    public async addAgent(reservationId: string | number, id: string): Promise<Agent> {
+        const req = {
+            AgentId: id,
+        }
+
+        const rsp = await this.axios.post(`/sales/reservations/${reservationId}/actions/setAgent`, req)
+        return rsp.data
+    }
+
+    /**
+     * Adds an agent staff to a specific reservation.
+     *
+     * @param {string | number} reservationId - The unique identifier of the reservation.
+     * @param {string} id - The unique identifier of the agent staff to be added.
+     * @return {Promise<AgentStaff>} A promise that resolves to the updated agent staff information.
+     */
+    public async addAgentStaff(reservationId: string | number, id: string): Promise<AgentStaff> {
+        const req = {
+            AgentId: id,
+        }
+
+        const rsp = await this.axios.post(`/sales/reservations/${reservationId}/actions/setAgentStaff`, req)
+        return rsp.data
     }
 
     /**
