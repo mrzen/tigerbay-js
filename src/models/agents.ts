@@ -40,7 +40,7 @@ export class AgentApi extends APIGroup {
   /**
    * Get agent staff members
    */
-  public async agentStaff(id: number): Promise<AgentStaff> {
-    return (await this.axios.get<AgentStaff>(`/sales/agents/${id}/staff`)).data
+  public async agentStaff(id: number): Promise<Array<AgentStaff>> {
+    return (await this.axios.get<Array<AgentStaff>>(`/sales/agents/${id}/staff`)).data
   }
 }
