@@ -1,4 +1,4 @@
-import { Cache, Customers, Notes, Payments, Reservations, Tasks, Tours } from './models'
+import { Cache, Customers, Notes, Payments, Reservations, Tasks, Tours, Agents } from './models'
 import Axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, HeadersDefaults, InternalAxiosRequestConfig } from 'axios'
 import { USER_AGENT } from './user_agent'
 import * as Auth from './auth'
