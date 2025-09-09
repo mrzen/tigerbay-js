@@ -477,7 +477,7 @@ export class Api extends APIGroup {
      */
     public async addAgent(reservationId: string | number, id: string): Promise<Agent> {
         const req = {
-            AgentId: id,
+            AgentId: Number(id),
         }
 
         const rsp = await this.axios.post(`/sales/reservations/${reservationId}/actions/setAgent`, req)
@@ -493,7 +493,7 @@ export class Api extends APIGroup {
      */
     public async addAgentStaff(reservationId: string | number, id: string): Promise<AgentStaff> {
         const req = {
-            AgentId: id,
+            AgentStaffId: Number(id),
         }
 
         const rsp = await this.axios.post(`/sales/reservations/${reservationId}/actions/setAgentStaff`, req)
