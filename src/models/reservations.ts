@@ -475,9 +475,9 @@ export class Api extends APIGroup {
      * @param {string} id - The unique identifier of the agent to be assigned.
      * @return {Promise<Agent>} A promise that resolves to the assigned agent's data.
      */
-    public async addAgent(reservationId: string | number, id: string): Promise<Agent> {
+    public async addAgent(reservationId: string | number, id: number): Promise<Agent> {
         const req = {
-            AgentId: Number(id),
+            AgentId: id,
         }
 
         const rsp = await this.axios.post(`/sales/reservations/${reservationId}/actions/setAgent`, req)
@@ -491,9 +491,9 @@ export class Api extends APIGroup {
      * @param {string} id - The unique identifier of the agent staff to be added.
      * @return {Promise<AgentStaff>} A promise that resolves to the updated agent staff information.
      */
-    public async addAgentStaff(reservationId: string | number, id: string): Promise<AgentStaff> {
+    public async addAgentStaff(reservationId: string | number, id: number): Promise<AgentStaff> {
         const req = {
-            AgentStaffId: Number(id),
+            AgentStaffId: id,
         }
 
         const rsp = await this.axios.post(`/sales/reservations/${reservationId}/actions/setAgentStaff`, req)

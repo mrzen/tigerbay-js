@@ -1,7 +1,7 @@
 import { APIGroup, LinkedObject } from "./common";
 
 export interface Agent extends LinkedObject {
-  Id: number
+  ID: number
   Name: string
   Reference: string
   Type: string
