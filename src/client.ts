@@ -117,8 +117,12 @@ export class Client {
 
     public async file(id: number): Promise<AxiosResponse> {
         const { Url } = (await this.axios.get(`/cms/files/${id}`)).data
-        return this.axios.get('/..' + Url, {
-            headers:{
+        // Some APIs return absolute URLs prefixed with a slash (e.g. "/https://...").
+        // Strip that leading slash before deciding whether the URL is absolute.
+        const normalisedUrl = Url.startsWith('/http') || Url.startsWith('/https') ? Url.slice(1) : Url
+        const downloadUrl = /^https?:\/\//i.test(normalisedUrl) ? normalisedUrl : '/..' + Url
+        return this.axios.get(downloadUrl, {
+            headers: {
                 Accept: '*/*',
             },
             responseType: 'stream',
